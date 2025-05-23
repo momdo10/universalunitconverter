@@ -1,88 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sitemap - Universal Unit Converter</title>
+  <title>Sitemap | Universal Unit Converter</title>
+  <meta name="description" content="Explore a stunning, interactive sitemap for Universal Unit Converter — find all tools and info pages grouped with smooth animations and intuitive navigation." />
+  <link rel="stylesheet" href="/styles.css" />
   <style>
+    /* Reset & base */
     body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 960px;
       margin: 2rem auto;
-      padding: 0 1rem;
+      background: #f5f7fa;
       color: #222;
-      background: #f9f9f9;
+      line-height: 1.6;
+      padding: 0 1rem;
+      scroll-behavior: smooth;
     }
-    header {
+
+    /* Top blue nav bar */
+    .top-bar {
+      background-color: #007BFF;
+      color: white;
+      font-weight: 700;
+      font-size: 2rem;
+      padding: 1rem 0;
       text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgb(0 123 255 / 0.3);
       margin-bottom: 2rem;
+      user-select: none;
     }
-    nav {
-      text-align: center;
+
+    /* Sticky nav with dropdown and links */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
       margin-bottom: 2rem;
+      z-index: 1000;
     }
-    nav a {
-      margin: 0 1rem;
+
+    .sticky-nav select,
+    .sticky-nav input[type="text"] {
+      font-size: 1rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      border: 1.5px solid #ccc;
+      transition: border-color 0.3s ease;
+      outline-offset: 2px;
+      outline-color: #007BFF;
+    }
+
+    .sticky-nav select:hover,
+    .sticky-nav input[type="text"]:focus {
+      border-color: #007BFF;
+    }
+
+    .sticky-nav nav a {
       text-decoration: none;
       color: #007BFF;
       font-weight: 600;
+      margin-left: 1rem;
+      position: relative;
     }
-    nav a:hover {
+
+    .sticky-nav nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #007BFF;
+      bottom: -4px;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+
+    .sticky-nav nav a:hover::after,
+    .sticky-nav nav a[aria-current="page"]::after {
+      width: 100%;
+    }
+
+    /* Main heading */
+    main h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #004085;
+      letter-spacing: 0.03em;
+    }
+
+    /* Category cards */
+    .category-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s forwards;
+    }
+
+    /* Staggered fadeIn for cards */
+    .category-card:nth-child(1) {
+      animation-delay: 0.15s;
+    }
+
+    .category-card:nth-child(2) {
+      animation-delay: 0.35s;
+    }
+
+    .category-card:nth-child(3) {
+      animation-delay: 0.55s;
+    }
+
+    /* Category headings */
+    .category-card h2 {
+      font-size: 1.75rem;
+      color: #003366;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Category icons */
+    .category-icon {
+      font-size: 2rem;
+      user-select: none;
+    }
+
+    /* Tool list */
+    ul.tools-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.tools-list li {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.75rem;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+    }
+
+    ul.tools-list li:hover {
+      background-color: #e6f0ff;
+    }
+
+    /* Links */
+    ul.tools-list li a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #0056b3;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+
+    ul.tools-list li a:hover {
+      color: #003366;
       text-decoration: underline;
     }
+
+    /* Tool descriptions */
+    .tool-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-left: 1.6rem;
+      margin-top: 0.25rem;
+      font-style: italic;
+    }
+
+    /* New tag */
+    .new-tag {
+      display: inline-block;
+      background: #28a745;
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      font-weight: 700;
+      vertical-align: middle;
+      user-select: none;
+      animation: pulse 2s infinite;
+    }
+
+    /* Other tools list */
+    .other-tools ul {
+      columns: 2;
+      column-gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       margin-top: 3rem;
+      color: #666;
       font-size: 0.9rem;
-      color: #555;
+      user-select: none;
     }
-    h1, h2 {
-      color: #111;
+
+    footer a {
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: 600;
     }
-    ul {
-      padding-left: 1.2rem;
-      margin-top: 0.5rem;
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mission statement */
+    .mission {
+      background: #e9f5ff;
+      border-left: 6px solid #007BFF;
+      padding: 1rem 1.5rem;
+      font-style: italic;
+      color: #0056b3;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 6px rgb(0 123 255 / 0.15);
+      user-select: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    /* Search box */
+    #searchBox {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      display: block;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+      outline-offset: 3px;
+      outline-color: #007BFF;
+    }
+
+    #searchBox:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 8px #007BFFaa;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .other-tools ul {
+        columns: 1;
+      }
+
+      .sticky-nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .sticky-nav nav a {
+        margin-left: 0;
+      }
     }
   </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.example.com/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sitemap",
+          "item": "https://www.example.com/sitemap.html"
+        }
+      ]
+    }
+  </script>
 </head>
+
 <body>
-  <header>
-    <h1>Universal Unit Converter</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="terms.html">Terms of Use</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="sitemap.html">Sitemap</a>
+  <div class="top-bar" aria-label="Site Title">Universal Unit Converter Sitemap</div>
+
+  <nav class="sticky-nav" aria-label="Primary navigation">
+    <div>
+      <label for="languageSelect" class="visually-hidden">Select Language</label>
+      <select id="languageSelect" aria-describedby="languageHelp" title="Select Language">
+        <option value="en" selected>English</option>
+        <option value="es">Spanish (Español)</option>
+        <option value="zh">Chinese (中文)</option>
+        <option value="hi">Hindi (हिंदी)</option>
+        <option value="ar">Arabic (العربية)</option>
+        <option value="fr">French (Français)</option>
+        <option value="ru">Russian (Русский)</option>
+        <option value="pt">Portuguese (Português)</option>
+        <option value="bn">Bengali (বাংলা)</option>
+        <option value="de">German (Deutsch)</option>
+      </select>
+    </div>
+
+    <input type="text" id="searchBox" placeholder="Search tools & pages..." aria-label="Search sitemap" />
+
+    <nav aria-label="Sitemap navigation links">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About Us</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/contact.html">Contact</a>
     </nav>
-  </header>
+  </nav>
 
   <main>
-    <h2>Sitemap</h2>
-    <ul>
-      <li>Home</li>
-      <li>Length Converter</li>
-      <li>Mass Converter</li>
-      <li>Temperature Converter</li>
-      <li>Area Converter</li>
-      <li>Time Converter</li>
-      <li>Volume Converter</li>
-      <li>Energy Converter</li>
-      <li>Power Converter</li>
-      <li>Pressure Converter</li>
-      <li>Speed Converter</li>
-      <li>Digital Storage Converter</li>
-      <li>Frequency Converter</li>
-      <li>About Us</li>
-      <li>Terms of Use</li>
-      <li>Privacy Policy</li>
-      <li>Sitemap</li>
-    </ul>
+    <h1>Comprehensive Sitemap</h1>
+
+    <p class="mission" aria-live="polite">
+      Discover every tool, page, and converter we offer — all neatly organized for easy browsing and quick access.
+    </p>
+
+    <!-- Categories -->
+    <section class="category-card" aria-labelledby="cat-length">
+      <h2 id="cat-length"><span class="category-icon" aria-hidden="true">📏</span> Length</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#length">Length Converter</a>
+          <div class="tool-desc">Convert meters, kilometers, inches, feet, miles, and more.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-mass">
+      <h2 id="cat-mass"><span class="category-icon" aria-hidden="true">⚖️</span> Mass</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#mass">Mass Converter</a>
+          <div class="tool-desc">Convert grams, kilograms, pounds, ounces, and others.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-temperature">
+      <h2 id="cat-temperature"><span class="category-icon" aria-hidden="true">🌡️</span> Temperature</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#temperature">Temperature Converter</a>
+          <div class="tool-desc">Convert Celsius, Fahrenheit, Kelvin, and more.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-area">
+      <h2 id="cat-area"><span class="category-icon" aria-hidden="true">🗺️</span> Area</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#area">Area Converter</a>
+          <div class="tool-desc">Convert square meters, hectares, acres, and others.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-time">
+      <h2 id="cat-time"><span class="category-icon" aria-hidden="true">⏰</span> Time</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#time">Time Converter</a>
+          <div class="tool-desc">Convert seconds, minutes, hours, days, and more.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-volume">
+      <h2 id="cat-volume"><span class="category-icon" aria-hidden="true">🧴</span> Volume</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#volume">Volume Converter</a>
+          <div class="tool-desc">Convert liters, gallons, milliliters, and others.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-energy">
+      <h2 id="cat-energy"><span class="category-icon" aria-hidden="true">⚡</span> Energy</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#energy">Energy Converter</a>
+          <div class="tool-desc">Convert joules, calories, kilowatt-hours, and more.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-power">
+      <h2 id="cat-power"><span class="category-icon" aria-hidden="true">🔌</span> Power</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#power">Power Converter</a>
+          <div class="tool-desc">Convert watts, horsepower, kilowatts, and others.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-pressure">
+      <h2 id="cat-pressure"><span class="category-icon" aria-hidden="true">🌬️</span> Pressure</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#pressure">Pressure Converter</a>
+          <div class="tool-desc">Convert pascals, bars, psi, and more.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-speed">
+      <h2 id="cat-speed"><span class="category-icon" aria-hidden="true">🚀</span> Speed</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#speed">Speed Converter</a>
+          <div class="tool-desc">Convert meters per second, km/h, mph, and others.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-digital-storage">
+      <h2 id="cat-digital-storage"><span class="category-icon" aria-hidden="true">💾</span> Digital Storage</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#digital-storage">Digital Storage Converter</a>
+          <div class="tool-desc">Convert bytes, kilobytes, megabytes, gigabytes, and more.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-card" aria-labelledby="cat-frequency">
+      <h2 id="cat-frequency"><span class="category-icon" aria-hidden="true">🎵</span> Frequency</h2>
+      <ul class="tools-list">
+        <li><a href="/index.html#frequency">Frequency Converter</a>
+          <div class="tool-desc">Convert hertz, kilohertz, megahertz, and others.</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Other tools and pages -->
+    <section class="category-card other-tools" aria-labelledby="cat-other-tools">
+      <h2 id="cat-other-tools"><span class="category-icon" aria-hidden="true">🛠️</span> Other Tools & Pages</h2>
+      <ul>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/terms.html">Terms of Use</a></li>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/feedback.html">Feedback</a></li>
+      </ul>
+    </section>
   </main>
 
   <footer>
-    &copy; 2025 Universal Unit Converter. All rights reserved.
+    &copy; 2025 Universal Unit Converter — All rights reserved.
   </footer>
+
+  <script>
+    // Simple search filter for the sitemap links
+    const searchBox = document.getElementById('searchBox');
+    searchBox.addEventListener('input', () => {
+      const filter = searchBox.value.toLowerCase();
+      const sections = document.querySelectorAll('section.category-card');
+      sections.forEach(section => {
+        const text = section.textContent.toLowerCase();
+        if (text.includes(filter)) {
+          section.style.display = '';
+        } else {
+          section.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
+
