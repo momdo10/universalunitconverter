@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flow Rate Converter | Convert Flow Units Online</title>
+  <meta name="description" content="Free online flow converter to instantly convert between cubic meters, liters, gallons, barrels, and more. Easy and accurate fluid flow rate conversions." />
+  <meta name="keywords" content="flow converter, flow rate converter, convert flow units, fluid flow calculator, volume flow, liters per second, gallons per minute, cubic meter per second, universal unit converter" />
+  <meta name="author" content="Universal Unit Converter" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #007BFF;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    table th {
+      background-color: #f2f2f2;
+    }
+    @media (max-width: 600px) {
+      input, select {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Universal Unit Converter
+  </header>
+
+  <div class="container">
+    <h1>Flow Converter</h1>
+    <label for="inputValue">Value:</label><br />
+    <input type="number" id="inputValue" placeholder="Enter value" /><br />
+
+    <label for="fromUnit">From:</label><br />
+    <select id="fromUnit"></select>
+
+    <table id="resultsTable">
+      <thead>
+        <tr>
+          <th>Unit</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    const units = [
+      { name: "Cubic meter/second [m³/s]", factor: 1 },
+      { name: "Cubic meter/day [m³/d]", factor: 1 / 86400 },
+      { name: "Cubic meter/hour [m³/h]", factor: 1 / 3600 },
+      { name: "Cubic meter/minute", factor: 1 / 60 },
+      { name: "Cubic centimeter/day", factor: 1e-6 / 86400 },
+      { name: "Cubic centimeter/hour", factor: 1e-6 / 3600 },
+      { name: "Cubic centimeter/minute", factor: 1e-6 / 60 },
+      { name: "Cubic centimeter/second", factor: 1e-6 },
+      { name: "Liter/day [L/d]", factor: 0.001 / 86400 },
+      { name: "Liter/hour [L/h]", factor: 0.001 / 3600 },
+      { name: "Liter/minute [L/min]", factor: 0.001 / 60 },
+      { name: "Liter/second [L/s]", factor: 0.001 },
+      { name: "Milliliter/day [mL/d]", factor: 1e-6 / 86400 },
+      { name: "Milliliter/hour [mL/h]", factor: 1e-6 / 3600 },
+      { name: "Milliliter/minute [mL/min]", factor: 1e-6 / 60 },
+      { name: "Milliliter/second [mL/s]", factor: 1e-6 },
+      { name: "Gallon (US)/day [gal (US)/d]", factor: 0.00378541 / 86400 },
+      { name: "Gallon (US)/hour [gal (US)/h]", factor: 0.00378541 / 3600 },
+      { name: "Gallon (US)/minute", factor: 0.00378541 / 60 },
+      { name: "Gallon (US)/second", factor: 0.00378541 },
+      { name: "Gallon (UK)/day [gal (UK)/d]", factor: 0.00454609 / 86400 },
+      { name: "Gallon (UK)/hour [gal (UK)/h]", factor: 0.00454609 / 3600 },
+      { name: "Gallon (UK)/minute", factor: 0.00454609 / 60 },
+      { name: "Gallon (UK)/second", factor: 0.00454609 },
+      { name: "Kilobarrel (US)/day", factor: 158.9872949 / 86400 },
+      { name: "Barrel (US)/day [bbl (US)/d]", factor: 0.1589872949 / 86400 },
+      { name: "Barrel (US)/hour [bbl (US)/h]", factor: 0.1589872949 / 3600 },
+      { name: "Barrel (US)/minute", factor: 0.1589872949 / 60 },
+      { name: "Barrel (US)/second", factor: 0.1589872949 },
+      { name: "Acre-foot/year [ac*ft/y]", factor: 1233.48 / (365 * 86400) },
+      { name: "Acre-foot/day [ac*ft/d]", factor: 1233.48 / 86400 },
+      { name: "Acre-foot/hour [ac*ft/h]", factor: 1233.48 / 3600 },
+      { name: "Hundred-cubic foot/day", factor: 2.83168 / 86400 },
+      { name: "Hundred-cubic foot/hour", factor: 2.83168 / 3600 },
+      { name: "Hundred-cubic foot/minute", factor: 2.83168 / 60 },
+      { name: "Ounce/hour [oz/h]", factor: 0.0000295735 / 3600 },
+      { name: "Ounce/minute [oz/min]", factor: 0.0000295735 / 60 },
+      { name: "Ounce/second [oz/s]", factor: 0.0000295735 },
+      { name: "Ounce (UK)/hour [oz (UK)/h]", factor: 0.0000284131 / 3600 },
+      { name: "Ounce (UK)/minute", factor: 0.0000284131 / 60 },
+      { name: "Ounce (UK)/second", factor: 0.0000284131 },
+      { name: "Cubic yard/hour [yd³/h]", factor: 0.764555 / 3600 },
+      { name: "Cubic yard/minute", factor: 0.764555 / 60 },
+      { name: "Cubic yard/second [yd³/s]", factor: 0.764555 },
+      { name: "Cubic foot/hour [ft³/h]", factor: 0.0283168 / 3600 },
+      { name: "Cubic foot/minute [ft³/min]", factor: 0.0283168 / 60 },
+      { name: "Cubic foot/second [ft³/s]", factor: 0.0283168 },
+      { name: "Cubic inch/hour [in³/h]", factor: 0.0000163871 / 3600 },
+      { name: "Cubic inch/minute [in³/min]", factor: 0.0000163871 / 60 },
+      { name: "Cubic inch/second [in³/s]", factor: 0.0000163871 },
+      { name: "Pound/second (Gasoline at 15.5°C)", factor: 0.0006135 },
+      { name: "Pound/minute (Gasoline at 15.5°C)", factor: 0.0006135 / 60 },
+      { name: "Pound/hour (Gasoline at 15.5°C)", factor: 0.0006135 / 3600 },
+      { name: "Pound/day (Gasoline at 15.5°C)", factor: 0.0006135 / 86400 },
+      { name: "Kilogram/second (Gasoline at 15.5°C)", factor: 0.001352 },
+      { name: "Kilogram/minute (Gasoline at 15.5°C)", factor: 0.001352 / 60 },
+      { name: "Kilogram/hour (Gasoline at 15.5°C)", factor: 0.001352 / 3600 },
+      { name: "Kilogram/day (Gasoline at 15.5°C)", factor: 0.001352 / 86400 }
+    ];
+
+    const inputValue = document.getElementById('inputValue');
+    const fromUnit = document.getElementById('fromUnit');
+    const resultsTable = document.querySelector('#resultsTable tbody');
+
+    units.forEach(unit => {
+      const option = document.createElement('option');
+      option.textContent = unit.name;
+      option.value = unit.factor;
+      fromUnit.appendChild(option);
+    });
+
+    function updateResults() {
+      const value = parseFloat(inputValue.value);
+      if (isNaN(value)) {
+        resultsTable.innerHTML = "<tr><td colspan='2'>Please enter a valid number.</td></tr>";
+        return;
+      }
+
+      const fromFactor = parseFloat(fromUnit.value);
+      const baseValue = value * fromFactor;
+
+      resultsTable.innerHTML = '';
+
+      units.forEach(unit => {
+        const convertedValue = baseValue / unit.factor;
+        const row = document.createElement('tr');
+        const unitCell = document.createElement('td');
+        const valueCell = document.createElement('td');
+        unitCell.textContent = unit.name;
+        valueCell.textContent = convertedValue.toPrecision(10);
+        row.appendChild(unitCell);
+        row.appendChild(valueCell);
+        resultsTable.appendChild(row);
+      });
+    }
+
+    inputValue.addEventListener('input', updateResults);
+    fromUnit.addEventListener('change', updateResults);
+  </script>
+
+<footer style="background-color:#007BFF; color:white; padding:20px; text-align:center; margin-top:40px;">
+  <a href="/" style="color:white; margin: 0 15px; text-decoration:none;">Home</a>
+  <a href="/sitemap.html" style="color:white; margin: 0 15px; text-decoration:none;">Sitemap</a>
+  <a href="/about.html" style="color:white; margin: 0 15px; text-decoration:none;">About</a>
+  <a href="/contact.html" style="color:white; margin: 0 15px; text-decoration:none;">Contact</a>
+  <a href="/privacy-policy.html" style="color:white; margin: 0 15px; text-decoration:none;">Privacy Policy</a>
+</footer>
+
+
+</body>
+</html>
