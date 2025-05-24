@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Universal Unit Converter</title>
+  <meta name="description" content="Reach out to Universal Unit Converter with your questions, feedback, or suggestions. Help us improve by sharing your ideas for new tools or features!" />
+  <meta name="keywords" content="contact universal unit converter, feedback, feature request, suggestions, contact form" />
+  <meta name="author" content="Universal Unit Converter" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f9ff;
+      color: #333;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    nav {
+      background-color: #007BFF;
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 2.5rem;
+      background: white;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #007BFF;
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    label {
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      font-size: 1rem;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: 0.3s border;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group i {
+      margin-right: 8px;
+      color: #007BFF;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      margin-top: 1rem;
+      color: green;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #007BFF;
+      color: white;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>Universal Unit Converter</nav>
+
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p class="subtitle">We’d love to hear from you! Let us know what we can improve or what you'd like to see next.</p>
+
+    <form action="https://formspree.io/f/mnqepgyy" method="POST" onsubmit="showSuccessMessage(event)">
+      <div class="form-group">
+        <label><i class="fa fa-user"></i> Your Name</label>
+        <input type="text" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa fa-envelope"></i> Your Email</label>
+        <input type="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa fa-question-circle"></i> Category</label>
+        <select name="category" required>
+          <option value="">-- Choose an option --</option>
+          <option value="Feature Request">Feature Request (e.g. new converter)</option>
+          <option value="Bug Report">Bug or Issue</option>
+          <option value="General Feedback">General Feedback</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa fa-comment-dots"></i> Your Message</label>
+        <textarea name="message" rows="5" placeholder="Tell us what you think..." required></textarea>
+      </div>
+
+      <!-- Honeypot field (invisible to humans) -->
+      <input type="text" name="_gotcha" style="display:none" />
+
+      <button type="submit"><i class="fa fa-paper-plane"></i> Send Message</button>
+      <div class="success-message" id="successMsg">Thank you! Your message has been sent. 🎉</div>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Universal Unit Converter | <a href="/" style="color:white; text-decoration:underline;">Home</a></p>
+  </footer>
+
+  <script>
+    function showSuccessMessage(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      // Simulate instant feedback
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(() => {
+        document.getElementById("successMsg").style.display = "block";
+        form.reset();
+      }).catch(() => {
+        alert("Oops! Something went wrong. Please try again.");
+      });
+    }
+  </script>
+
+</body>
+</html>
