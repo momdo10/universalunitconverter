@@ -194,6 +194,78 @@
     .conversion-card a:hover {
       color: #007bff;
     }
+
+.main-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.converter-column {
+  flex: 1 1 65%;
+}
+
+.sidebar {
+  flex: 1 1 30%;
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.sidebar h3 {
+  font-size: 1.3rem;
+  color: #007BFF;
+  margin-bottom: 1rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 0.75rem;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar a:hover {
+  color: #007BFF;
+}
+.collapsible-btn {
+  background: none;
+  border: none;
+  color: #007BFF;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  font-weight: bold;
+}
+
+.collapsible-content {
+  list-style: none;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.collapsible-content li {
+  margin-bottom: 0.5rem;
+}
+
+.collapsible-btn::after {
+  content: ' ▼';
+  font-size: 0.8rem;
+}
+
   </style>
 </head>
 <body>
@@ -202,7 +274,26 @@
   </header>
   <nav id="category-nav"></nav>
 
-  <div class="container" id="converter"></div>
+ <div class="main-flex">
+  <div class="converter-column">
+    <div class="container" id="converter"></div>
+  </div>
+
+  <aside class="sidebar">
+  <div class="all-converters">
+    <h3>All Converters</h3>
+    <ul>
+      <li>
+        <button class="collapsible-btn" onclick="toggleCategory('fluids-list')">Fluids Converters</button>
+        <ul id="fluids-list" class="collapsible-content">
+          <li><a href="/flow-converter.html">Flow</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</aside>
+</div>
+
 
   <!-- Search Box Section -->
   <div class="container">
@@ -735,6 +826,13 @@
     </nav>
     <p style="margin-top: 0.5rem; font-size: 0.9rem;">&copy; 2025 Universal Unit Converter. All rights reserved.</p>
   </footer>
+  <script>
+  function toggleCategory(id) {
+    const content = document.getElementById(id);
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
+
 </body>
-</html> 
+</html>  
 
