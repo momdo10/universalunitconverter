@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Length Converter | Convert Length Units Online</title>
+  <meta name="description" content="Free online length converter to instantly convert between meters, kilometers, miles, feet, inches, and more. Accurate and easy to use." />
+  <meta name="keywords" content="length converter, convert length units, distance converter, meters to feet, kilometers to miles, universal unit converter" />
+  <meta name="author" content="Universal Unit Converter" />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #007BFF;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    table th {
+      background-color: #f2f2f2;
+    }
+    @media (max-width: 600px) {
+      input, select {
+        max-width: 100%;
+      }
+    }
+    .main-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+    }
+    .converter-column {
+      flex: 1 1 65%;
+    }
+    .sidebar {
+      flex: 1 1 30%;
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+    .sidebar h3 {
+      font-size: 1.3rem;
+      color: #007BFF;
+      margin-bottom: 1rem;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 0.75rem;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar a:hover {
+      color: #007BFF;
+    }
+    .collapsible-btn {
+      background: none;
+      border: none;
+      color: #007BFF;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0;
+      text-align: left;
+      font-weight: bold;
+    }
+    .collapsible-content {
+      list-style: none;
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .collapsible-content li {
+      margin-bottom: 0.5rem;
+    }
+    .collapsible-btn::after {
+      content: ' ▼';
+      font-size: 0.8rem;
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+    }
+    .collapsible-btn.active::after {
+      transform: rotate(-180deg);
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-16TTL368B1');
+  </script>
+</head>
+<body>
+  <header>
+    Universal Unit Converter
+  </header>
+
+  <div class="main-flex">
+    <div class="converter-column">
+      <div class="container">
+        <h1>Length Converter</h1>
+        <label for="value">Value:</label>
+        <input type="number" id="value" placeholder="Enter value" />
+
+        <label for="fromUnit">From:</label>
+        <select id="fromUnit"></select>
+
+        <table id="results">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="all-converters">
+        <h3>All Converters</h3>
+        <ul>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory('length-list')">Length Converters</button>
+            <ul id="length-list" class="collapsible-content">
+              <li><a href="/length-converter.html">Length</a></li>
+              <li><a href="/distance-converter.html">Distance</a></li>
+            </ul>
+          </li>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory('fluids-list')">Fluids Converters</button>
+            <ul id="fluids-list" class="collapsible-content">
+              <li><a href="/flow-converter.html">Flow</a></li>
+              <li><a href="/flow-mass-converter.html">Mass Flow</a></li>
+            </ul>
+          </li>
+          <!-- Add more categories as needed -->
+        </ul>
+      </div>
+    </aside>
+  </div>
+<section id="length-info" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Understanding Length and Its Units</h2>
+  <p>
+    Length is the measure of distance between two points and is a fundamental concept in science, engineering, and daily life. It allows us to quantify space from tiny atoms to vast cosmic distances. The most widely used base unit of length today is the meter (m), standardized internationally for precision and ease of use.
+  </p>
+  <p>
+    Units of length have evolved over thousands of years, influenced by human anatomy, geography, culture, and technology. Below is an explanation of many common and historical length units.
+  </p>
+
+  <h3 style="color: #00509e; margin-top: 30px;">Common Metric Units</h3>
+  <ul>
+    <li><strong>Meter (m):</strong> The fundamental SI unit of length, originally defined by the Earth's meridian and now by the speed of light. It is the basis for all metric units.</li>
+    <li><strong>Kilometer (km):</strong> Equals 1,000 meters. Used for measuring longer distances like roads and geographic distances.</li>
+    <li><strong>Centimeter (cm):</strong> One hundredth of a meter, commonly used for everyday measurements such as height or length of small objects.</li>
+    <li><strong>Millimeter (mm):</strong> One thousandth of a meter, used in engineering and manufacturing where precision is important.</li>
+    <li><strong>Micrometer (µm):</strong> One millionth of a meter, used in biology, microscopy, and material science to measure cells and tiny objects.</li>
+    <li><strong>Nanometer (nm):</strong> One billionth of a meter, essential in nanotechnology and measuring wavelengths of light.</li>
+  </ul>
+
+  <h3 style="color: #00509e; margin-top: 30px;">Imperial and US Customary Units</h3>
+  <ul>
+    <li><strong>Inch (in):</strong> Historically based on the width of a thumb; 1 inch equals 2.54 cm exactly. Used extensively in the US and UK.</li>
+    <li><strong>Foot (ft):</strong> Consists of 12 inches; originally based on the length of a human foot.</li>
+    <li><strong>Yard (yd):</strong> Equal to 3 feet, used for measuring larger lengths, especially in sports and construction.</li>
+    <li><strong>Mile (mi):</strong> Derived from the Roman mille passus (“thousand paces”), equivalent to 5,280 feet or approximately 1.609 kilometers.</li>
+    <li><strong>Furlong (fur):</strong> An old English unit used in horse racing and agriculture, equals 220 yards or 660 feet.</li>
+  </ul>
+
+  <h3 style="color: #00509e; margin-top: 30px;">Astronomical Units</h3>
+  <ul>
+    <li><strong>Astronomical Unit (AU):</strong> The average distance from the Earth to the Sun, about 149.6 million kilometers. Used to describe distances within our solar system.</li>
+    <li><strong>Light Year (ly):</strong> The distance light travels in one year, about 9.46 trillion kilometers. Commonly used to express distances between stars.</li>
+    <li><strong>Parsec (pc):</strong> Approximately 3.26 light years, derived from parallax measurements in astronomy.</li>
+    <li><strong>Kiloparsec (kpc) and Megaparsec (Mpc):</strong> Used for measuring distances between galaxies and in cosmology; 1 kpc = 1,000 parsecs, 1 Mpc = 1 million parsecs.</li>
+  </ul>
+
+  <h3 style="color: #00509e; margin-top: 30px;">Historical and Less Common Units</h3>
+  <ul>
+    <li><strong>Cubit:</strong> An ancient Egyptian unit, based on the length from the elbow to the tip of the middle finger (~45 cm).</li>
+    <li><strong>Ell:</strong> A medieval unit used for measuring cloth, varying by country but often around 45 inches (1.14 meters).</li>
+    <li><strong>League:</strong> Traditionally the distance a person can walk in an hour, around 3 miles but varied widely.</li>
+    <li><strong>Rod (or Pole):</strong> A surveying unit equal to 16.5 feet or 5.029 meters.</li>
+  </ul>
+</section>
+
+  <footer style="background-color:#007BFF; color:white; padding:20px; text-align:center; margin-top:40px;">
+    <a href="/" style="color:white; margin: 0 15px; text-decoration:none;">Home</a>
+    <a href="/sitemap.html" style="color:white; margin: 0 15px; text-decoration:none;">Sitemap</a>
+    <a href="/about.html" style="color:white; margin: 0 15px; text-decoration:none;">About</a>
+    <a href="/contact.html" style="color:white; margin: 0 15px; text-decoration:none;">Contact</a>
+    <a href="/privacy-policy.html" style="color:white; margin: 0 15px; text-decoration:none;">Privacy Policy</a>
+  </footer>
+
+  <script>
+    // List of length units with conversion factor to meters
+    const units = [
+      { name: "Meter [m]", factor: 1 },
+      { name: "Kilometer [km]", factor: 1000 },
+      { name: "Decimeter [dm]", factor: 0.1 },
+      { name: "Centimeter [cm]", factor: 0.01 },
+      { name: "Millimeter [mm]", factor: 0.001 },
+      { name: "Micrometer [µm]", factor: 1e-6 },
+      { name: "Nanometer [nm]", factor: 1e-9 },
+      { name: "Mile [mi, mi(Int)]", factor: 1609.344 },
+      { name: "Yard [yd]", factor: 0.9144 },
+      { name: "Foot [ft]", factor: 0.3048 },
+      { name: "Inch [in]", factor: 0.0254 },
+      { name: "Light year [ly]", factor: 9.4607e15 },
+      { name: "Exameter [Em]", factor: 1e18 },
+      { name: "Petameter [Pm]", factor: 1e15 },
+      { name: "Terameter [Tm]", factor: 1e12 },
+      { name: "Gigameter [Gm]", factor: 1e9 },
+      { name: "Megameter [Mm]", factor: 1e6 },
+      { name: "Hectometer [hm]", factor: 100 },
+      { name: "Dekameter [dam]", factor: 10 },
+      { name: "Micron [µ]", factor: 1e-6 },
+      { name: "Picometer [pm]", factor: 1e-12 },
+      { name: "Femtometer [fm]", factor: 1e-15 },
+      { name: "Attometer [am]", factor: 1e-18 },
+      { name: "Yoctometer [ym]", factor: 1e-24 },
+      { name: "Zeptometer [zm]", factor: 1e-21 },
+      { name: "Megaparsec [Mpc]", factor: 3.085677581e22 },
+      { name: "Kiloparsec [kpc]", factor: 3.085677581e19 },
+      { name: "Parsec [pc]", factor: 3.085677581e16 },
+      { name: "Astronomical unit [AU, UA]", factor: 1.495978707e11 },
+      { name: "League [lea]", factor: 4828.032 }, // statute league
+      { name: "Nautical league (UK)", factor: 5556 }, 
+      { name: "Nautical league (int.)", factor: 5556 }, 
+      { name: "League (statute) [st.league]", factor: 4828.032 },
+      { name: "Nautical mile (UK) [NM (UK)]", factor: 1853.184 },
+      { name: "Nautical mile (international)", factor: 1852 },
+      { name: "Mile (statute) [mi, mi (US)]", factor: 1609.344 },
+      { name: "Mile (US survey) [mi]", factor: 1609.347218694437 },
+      { name: "Mile (Roman)", factor: 1478.5 },
+      { name: "Milha (Portuguese mile)", factor: 1853.184 },
+      { name: "Meile (German mile)", factor: 7531.5 },
+      { name: "Kiloyard [kyd]", factor: 914.4 },
+      { name: "Furlong [fur]", factor: 201.168 },
+      { name: "Furlong (US survey) [fur]", factor: 201.1684 },
+      { name: "Chain [ch]", factor: 20.1168 },
+      { name: "Chain (US survey) [ch]", factor: 20.11684023368047 },
+      { name: "Gunter's chain", factor: 20.1168 },
+      { name: "Rope", factor: 6.096 },
+      { name: "Rod [rd]", factor: 5.0292 },
+      { name: "Rod (US survey) [rd]", factor: 5.0292100584201 },
+      { name: "Perch", factor: 5.0292 },
+      { name: "Pole", factor: 5.0292 },
+      { name: "Fathom [fath]", factor: 1.8288 },
+      { name: "Fathom (US survey) [fath]", factor: 1.8288036576 },
+      { name: "Ell", factor: 1.143 },
+      { name: "Ell (Dutch)", factor: 0.696 },
+      { name: "Ell (Scottish)", factor: 0.94 },
+      { name: "Ell (Flemish)", factor: 0.688 },
+      { name: "Foot (US survey) [ft]", factor: 0.3048006096012192 },
+      { name: "Link [li]", factor: 0.201168 },
+      { name: "Link (US survey) [li]", factor: 0.201168402 }, 
+      { name: "Cubit (UK)", factor: 0.4572 },
+      { name: "Cubit (Greek)", factor: 0.445 },
+      { name: "Cubit (Biblical)", factor: 0.457 },
+      { name: "Hand", factor: 0.1016 },
+      { name: "Handbreadth", factor: 0.0762 },
+      { name: "Span (cloth)", factor: 0.2286 },
+      { name: "Span", factor: 0.2286 },
+      { name: "Digit", factor: 0.01905 },
+      { name: "Finger (cloth)", factor: 0.02225 },
+      { name: "Fingerbreadth", factor: 0.02225 },
+      { name: "Nail (cloth)", factor: 0.01905 },
+      { name: "Inch (US survey) [in]", factor: 0.0254000508 },
+      { name: "Barleycorn", factor: 0.008467 },
+      { name: "Mil [mil, thou]", factor: 0.0000254 },
+      { name: "Tenth (machining)", factor: 0.0000254 },
+      { name: "Microinch", factor: 2.54e-8 },
+      { name: "Angstrom [Å]", factor: 1e-10 },
+      { name: "a.u. of length [a.u., b]", factor: 0.52917721092e-10 },
+      { name: "Bohr radius [b, a.u.]", factor: 0.52917721092e-10 },
+      { name: "Electron radius (classical)", factor: 2.8179403227e-15 },
+      { name: "X-unit [X]", factor: 1e-13 },
+      { name: "Fermi [F, f]", factor: 1e-15 },
+      { name: "Planck length", factor: 1.616255e-35 },
+      { name: "Quantum of length", factor: 1.616255e-35 },
+      { name: "Compton wavelength", factor: 2.4263102389e-12 },
+      { name: "Lunar distance", factor: 384400000 },
+      { name: "Earth's equatorial radius", factor: 6378137 },
+      { name: "Earth's polar radius", factor: 6356752.3 },
+      { name: "Earth's distance from sun", factor: 1.496e11 },
+      { name: "Sun's radius", factor: 696340000 },
+      { name: "Galactic unit (GU)", factor: 3.086e19 },
+      { name: "Hubble length", factor: 1.323e26 },
+      { name: "Megalight-year", factor: 9.4607e21 },
+      { name: "Light second", factor: 299792458 },
+      { name: "Light minute", factor: 1.7987547e10 },
+      { name: "Light hour", factor: 1.07925285e12 },
+      { name: "Light day", factor: 2.590206837e13 },
+      { name: "Light month", factor: 7.776e14 },
+      { name: "Paris inch", factor: 0.02707 },
+      { name: "Arpent", factor: 58.47 },
+      { name: "Palmo", factor: 0.2 },
+      { name: "Toise", factor: 1.949 },
+      { name: "Vara (Mexican)", factor: 0.8382 },
+      { name: "Vara de tarea", factor: 0.8359 },
+      { name: "Vara conuquera", factor: 0.6989 },
+      { name: "Vara castellana", factor: 0.8359 },
+      { name: "Russian archin", factor: 0.7112 },
+      { name: "Roman actus", factor: 35.5 },
+      { name: "Long reed", factor: 5.0292 },
+      { name: "Reed", factor: 5.0292 },
+      { name: "Long cubit", factor: 0.525 },
+      { name: "Aln", factor: 0.7112 },
+      { name: "Famn", factor: 1.8288 },
+      { name: "Ken", factor: 1.818 },
+      { name: "Caliber [cl]", factor: 0.0254 },
+      { name: "Centiinch [cin]", factor: 0.000254 },
+      { name: "Picapoint", factor: 0.000353 },
+      { name: "Point [pt]", factor: 0.000352778 },
+      { name: "Didot point", factor: 0.0003759 },
+      { name: "Pica [pc]", factor: 0.0042333 },
+      { name: "Twip", factor: 0.000177778 },
+      { name: "Twipal", factor: 0.000177778 },
+      { name: "px", factor: 0.000264583 },
+      { name: "em", factor: 0.000264583 },
+      { name: "rem", factor: 0.000264583 },
+      { name: "Block (city block)", factor: 80 },
+      { name: "Rail (railroad distance)", factor: 1.8288 },
+      { name: "Link of a bicycle chain", factor: 0.254 },
+      { name: "Base pair length (bp)", factor: 3.4e-10 },
+      { name: "Nanodot", factor: 1e-9 },
+      { name: "Smoot", factor: 1.7018 },
+      { name: "Fiber thickness (denier, tex)", factor: 0.001 },
+    ];
+
+    // Fill the "From" dropdown
+    const fromUnitSelect = document.getElementById('fromUnit');
+    units.forEach((unit, i) => {
+      const option = document.createElement('option');
+      option.value = i;
+      option.textContent = unit.name;
+      fromUnitSelect.appendChild(option);
+    });
+
+    const valueInput = document.getElementById('value');
+    const resultsBody = document.querySelector('#results tbody');
+
+    function formatNumber(num) {
+      if (num === 0) return '0';
+      // If number is very large or very small, show with up to 10 digits and possibly scientific notation
+      if (Math.abs(num) < 1e-6 || Math.abs(num) > 1e9) {
+        return num.toExponential(6).replace(/\.?0+e/, 'e');
+      }
+      // Otherwise show normal decimal up to 10 significant digits, trim trailing zeros
+      let str = num.toPrecision(10);
+      // Remove trailing zeros and dot if not needed
+      str = str.replace(/\.?0+$/, '');
+      return str;
+    }
+
+    function convert() {
+      const val = parseFloat(valueInput.value);
+      if (isNaN(val)) {
+        resultsBody.innerHTML = '';
+        return;
+      }
+      const fromIndex = parseInt(fromUnitSelect.value);
+      const fromFactor = units[fromIndex].factor;
+
+      const valInMeters = val * fromFactor;
+
+      // Build result rows
+      let html = '';
+      units.forEach(unit => {
+        const convertedVal = valInMeters / unit.factor;
+        html += `<tr><td>${unit.name}</td><td>${formatNumber(convertedVal)}</td></tr>`;
+      });
+
+      resultsBody.innerHTML = html;
+    }
+
+    valueInput.addEventListener('input', convert);
+    fromUnitSelect.addEventListener('change', convert);
+
+    // Initialize default
+    valueInput.value = 1;
+    fromUnitSelect.value = 0;
+    convert();
+
+    // Sidebar collapsible
+    function toggleCategory(id) {
+      const el = document.getElementById(id);
+      const btn = event.target;
+      if (el.style.display === 'block') {
+        el.style.display = 'none';
+        btn.classList.remove('active');
+      } else {
+        el.style.display = 'block';
+        btn.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
+
