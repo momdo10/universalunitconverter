@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Centimeter to Inches Converter | cm to in Online Tool</title>
+  <meta name="description" content="Convert centimeters to inches (cm to in) instantly with this easy-to-use and accurate online converter tool by Universal Unit Converter." />
+  <meta name="keywords" content="centimeter to inches, cm to in, convert cm to inches, online length converter, universal unit converter" />
+  <meta name="author" content="Universal Unit Converter" />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #007BFF;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .main-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+    }
+    .converter-column {
+      flex: 1 1 65%;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input {
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .output {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 20px;
+      background: #e6f0ff;
+      padding: 15px;
+      border-left: 5px solid #007BFF;
+      border-radius: 5px;
+    }
+    .sidebar {
+      flex: 1 1 30%;
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+    .sidebar h3 {
+      font-size: 1.3rem;
+      color: #007BFF;
+      margin-bottom: 1rem;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 0.75rem;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar a:hover {
+      color: #007BFF;
+    }
+    footer {
+      background-color: #007BFF;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    footer a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-16TTL368B1');
+  </script>
+</head>
+<body>
+  <header>
+    Universal Unit Converter
+  </header>
+
+  <div class="main-flex">
+    <div class="converter-column">
+      <div class="container">
+        <h1>Centimeter to Inches Converter</h1>
+        <label for="cmInput">Centimeters (cm):</label>
+        <input type="number" id="cmInput" placeholder="Enter centimeters" oninput="convertCmToInches()" />
+        <div class="output" id="inchesOutput">Inches: –</div>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="all-converters">
+        <h3>All Converters</h3>
+        <ul>
+          <li><a href="/length-converter.html">Length</a></li>
+          <li><a href="/flow-converter.html">Flow</a></li>
+          <li><a href="/flow-mass-converter.html">Mass Flow</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <section style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px;">
+    <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px;">How to Convert cm to Inches</h2>
+    <p>To convert centimeters to inches, divide the length in centimeters by 2.54 since 1 inch = 2.54 cm.</p>
+    <p><strong>Formula:</strong> inches = centimeters ÷ 2.54</p>
+    <p><strong>Example:</strong> 10 cm ÷ 2.54 = 3.937 inches</p>
+  </section>
+
+  <footer>
+    <a href="/">Home</a>
+    <a href="/sitemap.html">Sitemap</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <script>
+    function convertCmToInches() {
+      const cm = parseFloat(document.getElementById('cmInput').value);
+      const output = document.getElementById('inchesOutput');
+      if (!isNaN(cm)) {
+        const inches = cm / 2.54;
+        output.textContent = `Inches: ${inches.toFixed(4)}`;
+      } else {
+        output.textContent = "Inches: –";
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
