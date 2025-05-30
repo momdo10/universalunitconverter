@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Miles to KM Converter | Convert Miles to Kilometers Online</title>
+  <meta name="description" content="Free online converter to instantly convert between miles and kilometers. Accurate and easy to use." />
+  <meta name="keywords" content="miles to km, miles to kilometers, length converter, unit converter" />
+  <meta name="author" content="Universal Unit Converter" />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #007BFF;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    table th {
+      background-color: #f2f2f2;
+    }
+    @media (max-width: 600px) {
+      input, select {
+        max-width: 100%;
+      }
+    }
+    .main-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+      padding: 0 1rem;
+    }
+    .converter-column {
+      flex: 1 1 65%;
+      min-width: 300px;
+    }
+    .sidebar {
+      flex: 1 1 30%;
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      min-width: 250px;
+    }
+    .sidebar h3 {
+      font-size: 1.3rem;
+      color: #007BFF;
+      margin-bottom: 1rem;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 0.75rem;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar a:hover {
+      color: #007BFF;
+    }
+    .collapsible-btn {
+      background: none;
+      border: none;
+      color: #007BFF;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0;
+      font-weight: bold;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .collapsible-content {
+      list-style: none;
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .collapsible-content li {
+      margin-bottom: 0.5rem;
+    }
+    .collapsible-btn::after {
+      content: ' ▼';
+      font-size: 0.8rem;
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+    }
+    .collapsible-btn.active::after {
+      transform: rotate(-180deg);
+    }
+    .switch-button-container {
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .switch-button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+    }
+    .switch-button:hover {
+        background-color: #0056b3;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-16TTL368B1');
+  </script>
+</head>
+<body>
+  <header>
+    Universal Unit Converter
+  </header>
+
+  <div class="main-flex">
+    <div class="converter-column">
+      <div class="container">
+        <h1>Miles to Kilometers Converter</h1>
+        <label for="value">Value:</label>
+        <input type="number" id="value" placeholder="Enter value in miles" />
+
+        <label for="fromUnit">From:</label>
+        <select id="fromUnit">
+          <option value="0">Miles [mi]</option>
+        </select>
+
+        <div class="switch-button-container">
+            <button class="switch-button" onclick="switchConverter()">Switch to KM to Miles</button>
+        </div>
+
+        <table id="results">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kilometers [km]</td>
+              <td id="kmResult"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="all-converters">
+        <h3>All Converters</h3>
+        <ul>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory(event, 'length-list')">Length Converters</button>
+            <ul id="length-list" class="collapsible-content">
+              <li><a href="/length-converter.html">Length</a></li>
+              <li><a href="/distance-converter.html">Distance</a></li>
+              <li><a href="/cm-to-inches.html">CM to Inches</a></li>
+              <li><a href="/inches-to-cm.html">Inches to CM</a></li>
+              <li><a href="/mm-to-inches.html">MM to Inches</a></li>
+              <li><a href="/inches-to-mm.html">Inches to MM</a></li>
+              <li><a href="/meters-to-feet.html">Meters to Feet</a></li>
+              <li><a href="/feet-to-meters.html">Feet to Meters</a></li>
+              <li><a href="/km-to-miles.html">KM to Miles</a></li>
+              <li><a href="/miles-to-km.html">Miles to KM</a></li>
+            </ul>
+          </li>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory(event, 'fluids-list')">Fluids Converters</button>
+            <ul id="fluids-list" class="collapsible-content">
+              <li><a href="/flow-converter.html">Flow</a></li>
+              <li><a href="/flow-mass-converter.html">Mass Flow</a></li>
+            </ul>
+          </li>
+          </ul>
+      </div>
+    </aside>
+  </div>
+
+<section id="length-info" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Understanding Miles and Kilometers</h2>
+  <p>
+    When measuring long distances, two widely used units are the mile (mi) and the kilometer (km). While both serve the same purpose, they belong to different measurement systems and are prevalent in different parts of the world.
+  </p>
+
+  <h3 style="color: #00509e; margin-top: 30px;">What is a Mile (mi)?</h3>
+  <p>
+    The mile is a unit of length in the imperial system and the U.S. customary system of measurement. While the United Kingdom and Canada have officially adopted the metric system, the mile continues to be used in the United States and, to some extent, in the UK for road distances and speed.
+  </p>
+  <ul>
+    <li>Origin: The word "mile" comes from the Latin "mille passus," meaning "a thousand paces." The Roman mile was typically 5,000 Roman feet.</li>
+    <li>Definition: Since 1959, the international statute mile has been precisely defined as <strong>1,609.344 meters</strong> or <strong>1.609344 kilometers</strong>. This standardization helps in converting between the imperial and metric systems.</li>
+    <li>Common Uses: Miles are predominantly used in the United States and the United Kingdom for measuring road distances, speed limits, and in aviation and nautical navigation (nautical miles, which are slightly different, are also used).</li>
+  </ul>
+
+  <h3 style="color: #00509e; margin-top: 30px;">What is a Kilometer (km)?</h3>
+  <p>
+    The kilometer is a unit of length in the International System of Units (SI), also known as the metric system. It is defined as one thousand meters. The metric system is a decimal-based system used globally for most scientific, commercial, and everyday measurements.
+  </p>
+  <ul>
+    <li>Origin: Part of the metric system, which originated in France in the late 18th century.</li>
+    <li>Definition: 1 kilometer = 1,000 meters.</li>
+    <li>Common Uses: Kilometers are used worldwide for measuring geographical distances, road lengths, and in sports like running and cycling. Most countries use kilometers for speed limits and distance signs.</li>
+  </ul>
+
+  <h3 style="color: #00509e; margin-top: 30px;">Why Convert Between Miles and Kilometers?</h3>
+  <p>
+    The need to convert between miles and kilometers is essential due to the differing measurement systems used globally. Travelers, drivers, and those involved in international trade or sports often encounter distances expressed in different units. An accurate converter facilitates understanding and communication across these systems.
+  </p>
+</section>
+
+<section id="conversion-details" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Miles to Kilometers Conversion Table</h2>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Miles [mi]</th>
+        <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Kilometers [km] (approx.)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>0.1 mi</td><td>0.160934 km</td></tr>
+      <tr><td>1 mi</td><td>1.60934 km</td></tr>
+      <tr><td>2 mi</td><td>3.21868 km</td></tr>
+      <tr><td>5 mi</td><td>8.04672 km</td></tr>
+      <tr><td>10 mi</td><td>16.09344 km</td></tr>
+      <tr><td>20 mi</td><td>32.18688 km</td></tr>
+      <tr><td>50 mi</td><td>80.4672 km</td></tr>
+      <tr><td>100 mi</td><td>160.9344 km</td></tr>
+      <tr><td>1000 mi</td><td>1609.344 km</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color: #00509e; margin-top: 30px;">How to Convert Miles to Kilometers</h3>
+  <p>
+    Converting a measurement from miles (mi) to kilometers (km) is a straightforward process. The fundamental conversion factor to remember is:
+  </p>
+  <ul>
+    <li>1 mile is exactly equal to <strong>1.609344 kilometers</strong>.</li>
+  </ul>
+  <p>
+    Therefore, to convert a value from miles to kilometers, you simply <strong>multiply</strong> your mile value by <strong>1.609344</strong>.
+  </p>
+  <p>
+    <strong>Here's the simple formula:</strong><br>
+    Kilometers = Miles × 1.609344
+  </p>
+  <p>
+    Let's look at an example:
+    <br>
+    Suppose you have a measurement of <strong>5 miles</strong> and you want to know what that is in kilometers.
+    <br>
+    Using the formula:
+    <br>
+    5 mi × 1.609344 = 8.04672 km
+    <br>
+    So, 5 miles is exactly equal to 8.04672 kilometers.
+  </p>
+  <p>
+    If you need to convert from kilometers back to miles, you would divide your kilometer value by 1.609344.
+  </p>
+</section>
+
+<section id="popular-conversions" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Popular Length Unit Conversions</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+    <ul>
+      <li><a href="/cm-to-inches.html">cm to inches</a></li>
+      <li><a href="/inches-to-cm.html">inches to cm</a></li>
+      <li><a href="/mm-to-inches.html">mm to inches</a></li>
+      <li><a href="/inches-to-mm.html">inches to mm</a></li>
+      <li><a href="/meters-to-feet.html">meters to feet</a></li>
+      <li><a href="/feet-to-meters.html">feet to meters</a></li>
+      <li><a href="/km-to-miles.html">km to miles</a></li>
+      <li><a href="/miles-to-km.html">miles to km</a></li>
+    </ul>
+    <ul>
+      <li><a href="/cm-to-feet.html">cm to feet</a></li>
+      <li><a href="/feet-to-cm.html">feet to cm</a></li>
+      <li><a href="/inches-to-feet.html">inches to feet</a></li>
+      <li><a href="/feet-to-inches.html">feet to inches</a></li>
+      <li><a href="/meters-to-yards.html">meters to yards</a></li>
+      <li><a href="/yards-to-meters.html">yards to meters</a></li>
+      <li><a href="/mm-to-cm.html">mm to cm</a></li>
+      <li><a href="/cm-to-mm.html">cm to mm</a></li>
+    </ul>
+    <ul>
+      <li><a href="/cm-to-km.html">cm to km</a></li>
+      <li><a href="/km-to-cm.html">km to cm</a></li>
+      <li><a href="/mm-to-feet.html">mm to feet</a></li>
+      <li><a href="/feet-to-mm.html">feet to mm</a></li>
+      <li><a href="/meters-to-miles.html">meters to miles</a></li>
+      <li><a href="/miles-to-meters.html">miles to meters</a></li>
+      <li><a href="/feet-to-miles.html">feet to miles</a></li>
+      <li><a href="/miles-to-feet.html">miles to feet</a></li>
+    </ul>
+    <ul>
+      <li><a href="/yards-to-feet.html">yards to feet</a></li>
+      <li><a href="/feet-to-yards.html">feet to yards</a></li>
+      <li><a href="/inches-to-meters.html">inches to meters</a></li>
+      <li><a href="/meters-to-inches.html">meters to inches</a></li>
+      <li><a href="/km-to-mm.html">km to mm</a></li>
+      <li><a href="/mm-to-km.html">mm to km</a></li>
+      <li><a href="/inches-to-yards.html">inches to yards</a></li>
+      <li><a href="/yards-to-inches.html">yards to inches</a></li>
+      <li><a href="/yards-to-miles.html">yards to miles</a></li>
+      <li><a href="/miles-to-yards.html">miles to yards</a></li>
+    </ul>
+  </div>
+</section>
+
+  <footer style="background-color:#007BFF; color:white; padding:20px; text-align:center; margin-top:40px;">
+    <a href="/" style="color:white; margin: 0 15px; text-decoration:none;">Home</a>
+    <a href="/sitemap.html" style="color:white; margin: 0 15px; text-decoration:none;">Sitemap</a>
+    <a href="/about.html" style="color:white; margin: 0 15px; text-decoration:none;">Contact</a>
+    <a href="/privacy-policy.html" style="color:white; margin: 0 15px; text-decoration:none;">Privacy Policy</a>
+  </footer>
+
+  <script>
+    const valueInput = document.getElementById('value');
+    const kmResult = document.getElementById('kmResult');
+
+    function formatNumber(num) {
+      if (num === 0) return '0';
+      if (Math.abs(num) < 1e-7 && num !== 0) {
+        return num.toExponential(6).replace(/\.?0+e/, 'e');
+      }
+      if (Math.abs(num) >= 1e10) {
+         return num.toExponential(6).replace(/\.?0+e/, 'e');
+      }
+      let str = num.toPrecision(10);
+      str = str.replace(/\.?0+$/, '');
+      if (str.includes('.') && str.endsWith('0')) {
+          str = str.replace(/0+$/, '');
+      }
+      if (str.endsWith('.')) {
+          str = str.slice(0, -1);
+      }
+      return str;
+    }
+
+    function convertMilesToKm() {
+      const milesValue = parseFloat(valueInput.value);
+      if (isNaN(milesValue)) {
+        kmResult.textContent = '';
+        return;
+      }
+      const kilometers = milesValue * 1.609344;
+      kmResult.textContent = formatNumber(kilometers);
+    }
+
+    valueInput.addEventListener('input', convertMilesToKm);
+
+    valueInput.value = 1;
+    convertMilesToKm();
+
+    function toggleCategory(event, id) {
+      const el = document.getElementById(id);
+      const btn = event.currentTarget;
+      if (el.style.display === 'block') {
+        el.style.display = 'none';
+        btn.classList.remove('active');
+      } else {
+        el.style.display = 'block';
+        btn.classList.add('active');
+      }
+    }
+
+    function switchConverter() {
+        window.location.href = '/km-to-miles.html'; // Link to the km to miles converter
+    }
+  </script>
+</body>
+</html>
