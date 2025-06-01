@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Convert Yards to Meters</title>
+  <meta name="description" content="Free online converter to instantly convert between yards and meters. Accurate and easy to use." />
+  <meta name="keywords" content="yd to m, yards to meters, length converter, unit converter" />
+  <meta name="author" content="Universal Unit Converter" />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #007BFF;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    table th {
+      background-color: #f2f2f2;
+    }
+    @media (max-width: 600px) {
+      input, select {
+        max-width: 100%;
+      }
+    }
+    .main-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+      padding: 0 1rem;
+    }
+    .converter-column {
+      flex: 1 1 65%;
+      min-width: 300px;
+    }
+    .sidebar {
+      flex: 1 1 30%;
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      min-width: 250px;
+    }
+    .sidebar h3 {
+      font-size: 1.3rem;
+      color: #007BFF;
+      margin-bottom: 1rem;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 0.75rem;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar a:hover {
+      color: #007BFF;
+    }
+    .collapsible-btn {
+      background: none;
+      border: none;
+      color: #007BFF;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0;
+      font-weight: bold;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .collapsible-content {
+      list-style: none;
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .collapsible-content li {
+      margin-bottom: 0.5rem;
+    }
+    .collapsible-btn::after {
+      content: ' ▼';
+      font-size: 0.8rem;
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+    }
+    .collapsible-btn.active::after {
+      transform: rotate(-180deg);
+    }
+    .switch-button-container {
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .switch-button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+    }
+    .switch-button:hover {
+        background-color: #0056b3;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-16TTL368B1');
+  </script>
+</head>
+<body>
+  <header>
+    Universal Unit Converter
+  </header>
+
+  <div class="main-flex">
+    <div class="converter-column">
+      <div class="container">
+        <h1>Yards to Meters Converter</h1>
+        <label for="value">Value:</label>
+        <input type="number" id="value" placeholder="Enter value in yards" />
+
+        <label for="fromUnit">From:</label>
+        <select id="fromUnit">
+          <option value="0">Yards [yd]</option>
+        </select>
+
+        <div class="switch-button-container">
+            <button class="switch-button" onclick="switchConverter()">Switch to Meters to Yards</button>
+        </div>
+
+        <table id="results">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Meters [m]</td>
+              <td id="metersResult"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="all-converters">
+        <h3>All Converters</h3>
+        <ul>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory(event, 'length-list')">Length Converters</button>
+            <ul id="length-list" class="collapsible-content">
+              <li><a href="/length-converter.html">Length</a></li>
+              <li><a href="/distance-converter.html">Distance</a></li>
+              <li><a href="/cm-to-inches.html">CM to Inches</a></li>
+              <li><a href="/meters-to-feet.html">Meters to Feet</a></li>
+              <li><a href="/feet-to-meters.html">Feet to Meters</a></li>
+              <li><a href="/cm-to-feet.html">CM to Feet</a></li>
+              <li><a href="/feet-to-cm.html">Feet to CM</a></li>
+              <li><a href="/inches-to-feet.html">Inches to Feet</a></li>
+              <li><a href="/feet-to-inches.html">Feet to Inches</a></li>
+              <li><a href="/meters-to-yards.html">Meters to Yards</a></li>
+              <li><a href="/yards-to-meters.html">Yards to Meters</a></li>
+            </ul>
+          </li>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory(event, 'fluids-list')">Fluids Converters</button>
+            <ul id="fluids-list" class="collapsible-content">
+              <li><a href="/flow-converter.html">Flow</a></li>
+              <li><a href="/flow-mass-converter.html">Mass Flow</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+<section id="length-info" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Understanding Yards and Meters</h2>
+  <p>
+    When dealing with units of length, the <strong>yard (yd)</strong> and the <strong>meter (m)</strong> are two common units that are often encountered. While yards are part of the imperial and U.S. customary systems, meters belong to the metric system. Understanding their relationship is essential for accurate conversions.
+  </p>
+
+  <h3 style="color: #00509e; margin-top: 30px;">What is a Yard (yd)?</h3>
+  <p>
+    The yard is a unit of length in the <strong>imperial system</strong> and the <strong>U.S. customary system</strong> of measurement. Historically, its definition varied, but it is now internationally standardized in relation to the meter.
+  </p>
+  <ul>
+    <li><strong>Origin:</strong> The origin of the yard is uncertain, but it's often attributed to the length of a medieval king's belt or arm.</li>
+    <li><strong>Definition:</strong> Since 1959, the international yard has been precisely defined as <strong>0.9144 meters</strong>. A yard is also equivalent to 3 feet or 36 inches.</li>
+    <li><strong>Common Uses:</strong> Yards are primarily used in the United States, and in the United Kingdom for specific applications such as measuring fabric, sports fields (e.g., American football), and certain distances.</li>
+  </ul>
+
+  <h3 style="color: #00509e; margin-top: 30px;">What is a Meter (m)?</h3>
+  <p>
+    The meter is the base unit of length in the <strong>International System of Units (SI)</strong>, commonly known as the metric system. It is the most widely used system of measurement globally for scientific, commercial, and everyday purposes.
+  </p>
+  <ul>
+    <li><strong>Origin:</strong> The metric system was developed in France during the late 18th century.</li>
+    <li><strong>Definition:</strong> The meter is precisely defined as the length of the path travelled by light in a vacuum during a time interval of 1/299,792,458 of a second.</li>
+    <li><strong>Common Uses:</strong> Meters are used worldwide for measuring distances, heights, depths, and lengths across various fields, including construction, sports (e.g., track and field), and science.</li>
+  </ul>
+
+  <h3 style="color: #00509e; margin-top: 30px;">Why Convert Between Yards and Meters?</h3>
+  <p>
+    The need to convert between yards and meters arises frequently due to the coexistence of the imperial and metric systems. For example, materials might be purchased in yards in one region and need to be understood in meters for a project in another. Similarly, athletes in international competitions might train using imperial distances but need to understand them in meters for comparison with international records. Accurate conversion ensures smooth international trade, sports, and technical collaborations.
+  </p>
+</section>
+
+<section id="conversion-details" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Yards to Meters Conversion Table</h2>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Yards [yd]</th>
+        <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Meters [m] (approx.)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 yd</td><td>0.9144 m</td></tr>
+      <tr><td>2 yd</td><td>1.8288 m</td></tr>
+      <tr><td>5 yd</td><td>4.572 m</td></tr>
+      <tr><td>10 yd</td><td>9.144 m</td></tr>
+      <tr><td>20 yd</td><td>18.288 m</td></tr>
+      <tr><td>50 yd</td><td>45.72 m</td></tr>
+      <tr><td>100 yd</td><td>91.44 m</td></tr>
+      <tr><td>1000 yd</td><td>914.4 m</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color: #00509e; margin-top: 30px;">How to Convert Yards to Meters</h3>
+  <p>
+    Converting a measurement from yards (yd) to meters (m) is straightforward using the international conversion factor.
+  </p>
+  <ul>
+    <li><strong>1 yard is exactly 0.9144 meters.</strong></li>
+  </ul>
+  <p>
+    To convert any value in yards to meters, you simply <strong>multiply</strong> your yard value by <strong>0.9144</strong>.
+  </p>
+  <p>
+    <strong>Here's the simple formula:</strong><br>
+    Meters = Yards × 0.9144
+  </p>
+  <p>
+    <strong>Let's look at an example:</strong>
+    <br>
+    Suppose you have a measurement of <strong>10 yards</strong> and you want to know what that is in meters.
+    <br>
+    Using the formula:
+    <br>
+    10 yd × 0.9144 = 9.144 m
+    <br>
+    So, 10 yards is exactly equal to 9.144 meters.
+  </p>
+  <p>
+    If you need to convert from meters back to yards, remember that <strong>1 meter is approximately 1.09361 yards</strong>. So, you would multiply your meter value by 1.09361.
+  </p>
+</section>
+<section id="popular-conversions" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Popular Length Unit Conversions</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+    <ul>
+      <li><a href="/cm-to-inches.html">cm to inches</a></li>
+      <li><a href="/inches-to-cm.html">inches to cm</a></li>
+      <li><a href="/mm-to-inches.html">mm to inches</a></li>
+      <li><a href="/inches-to-mm.html">inches to mm</a></li>
+      <li><a href="/meters-to-feet.html">meters to feet</a></li>
+      <li><a href="/feet-to-meters.html">feet to meters</a></li>
+      <li><a href="/km-to-miles.html">km to miles</a></li>
+      <li><a href="/miles-to-km.html">miles to km</a></li>
+    </ul>
+    <ul>
+      <li><a href="/cm-to-feet.html">cm to feet</a></li>
+      <li><a href="/feet-to-cm.html">feet to cm</a></li>
+      <li><a href="/inches-to-feet.html">inches to feet</a></li>
+      <li><a href="/feet-to-inches.html">feet to inches</a></li>
+      <li><a href="/meters-to-yards.html">meters to yards</a></li>
+      <li><a href="/yards-to-meters.html">yards to meters</a></li>
+      <li><a href="/mm-to-cm.html">mm to cm</a></li>
+      <li><a href="/cm-to-mm.html">cm to mm</a></li>
+    </ul>
+    <ul>
+      <li><a href="/cm-to-km.html">cm to km</a></li>
+      <li><a href="/km-to-cm.html">km to cm</a></li>
+      <li><a href="/mm-to-feet.html">mm to feet</a></li>
+      <li><a href="/feet-to-mm.html">feet to mm</a></li>
+      <li><a href="/meters-to-miles.html">meters to miles</a></li>
+      <li><a href="/miles-to-meters.html">miles to meters</a></li>
+      <li><a href="/feet-to-miles.html">feet to miles</a></li>
+      <li><a href="/miles-to-feet.html">miles to feet</a></li>
+    </ul>
+    <ul>
+      <li><a href="/yards-to-feet.html">yards to feet</a></li>
+      <li><a href="/feet-to-yards.html">feet to yards</a></li>
+      <li><a href="/inches-to-meters.html">inches to meters</a></li>
+      <li><a href="/meters-to-inches.html">meters to inches</a></li>
+      <li><a href="/km-to-mm.html">km to mm</a></li>
+      <li><a href="/mm-to-km.html">mm to km</a></li>
+      <li><a href="/inches-to-yards.html">inches to yards</a></li>
+      <li><a href="/yards-to-inches.html">yards to inches</a></li>
+      <li><a href="/yards-to-miles.html">yards to miles</a></li>
+      <li><a href="/miles-to-yards.html">miles to yards</a></li>
+    </ul>
+  </div>
+</section>
+  <footer style="background-color:#007BFF; color:white; padding:20px; text-align:center; margin-top:40px;">
+    <a href="/" style="color:white; margin: 0 15px; text-decoration:none;">Home</a>
+    <a href="/sitemap.html" style="color:white; margin: 0 15px; text-decoration:none;">Sitemap</a>
+    <a href="/about.html" style="color:white; margin: 0 15px; text-decoration:none;">About</a>
+    <a href="/contact.html" style="color:white; margin: 0 15px; text-decoration:none;">Contact</a>
+    <a href="/privacy-policy.html" style="color:white; margin: 0 15px; text-decoration:none;">Privacy Policy</a>
+  </footer>
+
+  <script>
+    const valueInput = document.getElementById('value');
+    const metersResult = document.getElementById('metersResult');
+
+    function formatNumber(num) {
+      if (num === 0) return '0';
+      if (Math.abs(num) < 1e-7 && num !== 0) {
+        return num.toExponential(6).replace(/\.?0+e/, 'e');
+      }
+      if (Math.abs(num) >= 1e10) {
+         return num.toExponential(6).replace(/\.?0+e/, 'e');
+      }
+      let str = num.toPrecision(10);
+      str = str.replace(/\.?0+$/, '');
+      if (str.includes('.') && str.endsWith('0')) {
+          str = str.replace(/0+$/, '');
+      }
+      if (str.endsWith('.')) {
+          str = str.slice(0, -1);
+      }
+      return str;
+    }
+
+    function convertYardsToMeters() {
+      const yardsValue = parseFloat(valueInput.value);
+      if (isNaN(yardsValue)) {
+        metersResult.textContent = '';
+        return;
+      }
+      // 1 yard = 0.9144 meters
+      const meters = yardsValue * 0.9144;
+      metersResult.textContent = formatNumber(meters);
+    }
+
+    valueInput.addEventListener('input', convertYardsToMeters);
+
+    valueInput.value = 1;
+    convertYardsToMeters();
+
+    function toggleCategory(event, id) {
+      const el = document.getElementById(id);
+      const btn = event.currentTarget;
+      if (el.style.display === 'block') {
+        el.style.display = 'none';
+        btn.classList.remove('active');
+      } else {
+        el.style.display = 'block';
+        btn.classList.add('active');
+      }
+    }
+
+    function switchConverter() {
+        window.location.href = '/meters-to-yards.html';
+    }
+  </script>
+</body>
+</html> 
