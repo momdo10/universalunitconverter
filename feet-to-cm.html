@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Convert Feet to Centimeters</title>
+  <meta name="description" content="Free online converter to instantly convert between feet and centimeters. Accurate and easy to use." />
+  <meta name="keywords" content="ft to cm, feet to centimeters, length converter, unit converter" />
+  <meta name="author" content="Universal Unit Converter" />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #007BFF;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    table th {
+      background-color: #f2f2f2;
+    }
+    @media (max-width: 600px) {
+      input, select {
+        max-width: 100%;
+      }
+    }
+    .main-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+      padding: 0 1rem;
+    }
+    .converter-column {
+      flex: 1 1 65%;
+      min-width: 300px;
+    }
+    .sidebar {
+      flex: 1 1 30%;
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      min-width: 250px;
+    }
+    .sidebar h3 {
+      font-size: 1.3rem;
+      color: #007BFF;
+      margin-bottom: 1rem;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 0.75rem;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar a:hover {
+      color: #007BFF;
+    }
+    .collapsible-btn {
+      background: none;
+      border: none;
+      color: #007BFF;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0;
+      font-weight: bold;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .collapsible-content {
+      list-style: none;
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .collapsible-content li {
+      margin-bottom: 0.5rem;
+    }
+    .collapsible-btn::after {
+      content: ' ▼';
+      font-size: 0.8rem;
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+    }
+    .collapsible-btn.active::after {
+      transform: rotate(-180deg);
+    }
+    .switch-button-container {
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .switch-button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+    }
+    .switch-button:hover {
+        background-color: #0056b3;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-16TTL368B1');
+  </script>
+</head>
+<body>
+  <header>
+    Universal Unit Converter
+  </header>
+
+  <div class="main-flex">
+    <div class="converter-column">
+      <div class="container">
+        <h1>Feet to Centimeters Converter</h1>
+        <label for="value">Value:</label>
+        <input type="number" id="value" placeholder="Enter value in feet" />
+
+        <label for="fromUnit">From:</label>
+        <select id="fromUnit">
+          <option value="0">Feet [ft]</option>
+        </select>
+
+        <div class="switch-button-container">
+            <button class="switch-button" onclick="switchConverter()">Switch to Centimeters to Feet</button>
+        </div>
+
+        <table id="results">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Centimeters [cm]</td>
+              <td id="cmResult"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="all-converters">
+        <h3>All Converters</h3>
+        <ul>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory(event, 'length-list')">Length Converters</button>
+            <ul id="length-list" class="collapsible-content">
+              <li><a href="/length-converter.html">Length</a></li>
+              <li><a href="/distance-converter.html">Distance</a></li>
+              <li><a href="/cm-to-inches.html">CM to Inches</a></li>
+              <li><a href="/meters-to-feet.html">Meters to Feet</a></li>
+              <li><a href="/feet-to-meters.html">Feet to Meters</a></li>
+              <li><a href="/cm-to-feet.html">CM to Feet</a></li>
+              <li><a href="/feet-to-cm.html">Feet to CM</a></li>
+            </ul>
+          </li>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory(event, 'fluids-list')">Fluids Converters</button>
+            <ul id="fluids-list" class="collapsible-content">
+              <li><a href="/flow-converter.html">Flow</a></li>
+              <li><a href="/flow-mass-converter.html">Mass Flow</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+<section id="length-info" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Understanding Feet and Centimeters</h2>
+  <p>
+    When measuring length or distance, two commonly used units are the <strong>foot (ft)</strong> and the <strong>centimeter (cm)</strong>. They hail from different measurement systems and have distinct historical backgrounds and applications. Understanding these differences is key to appreciating the need for conversion between them.
+  </p>
+
+  <h3 style="color: #00509e; margin-top: 30px;">What is a Foot (ft)?</h3>
+  <p>
+    The foot is a unit of length in the <strong>imperial system</strong> and the <strong>U.S. customary system</strong> of measurement. These systems have historical roots in Roman, Carolingian, and English systems of units.
+  </p>
+  <ul>
+    <li><strong>Origin:</strong> The foot has historically varied in length. Its name suggests its origin from the length of a human foot.</li>
+    <li><strong>Definition:</strong> Since 1959, the international foot has been precisely defined as <strong>0.3048 meters</strong>. This agreement standardized the foot in terms of the metric system. Twelve inches make up one foot.</li>
+    <li><strong>Common Uses:</strong> Feet are predominantly used in the United States for many everyday measurements, such as human height, room sizes, building dimensions, and altitudes in aviation. While the United Kingdom and Canada have officially adopted the metric system, feet and inches are still commonly used colloquially and in certain sectors like construction and real estate.</li>
+  </ul>
+
+  <h3 style="color: #00509e; margin-top: 30px;">What is a Centimeter (cm)?</h3>
+  <p>
+    The centimeter is a unit of length in the <strong>International System of Units (SI)</strong>, commonly known as the metric system. The metric system is an internationally recognized decimal system of measurement used by most of the world for scientific, commercial, and general purposes. A centimeter is one hundredth of a meter.
+  </p>
+  <ul>
+    <li><strong>Origin:</strong> The metric system was developed in France during the late 18th century.</li>
+    <li><strong>Definition:</strong> One centimeter is defined as 1/100 of a meter. The meter is precisely defined by the distance light travels in a vacuum in 1/299,792,458 of a second.</li>
+    <li><strong>Common Uses:</strong> Centimeters are widely used globally for a variety of measurements, from clothing sizes to small object dimensions and rainfall measurements.</li>
+  </ul>
+
+  <h3 style="color: #00509e; margin-top: 30px;">Why Convert Between Feet and Centimeters?</h3>
+  <p>
+    The need to convert between feet and centimeters is crucial due to global interactions in trade, technology, science, and culture. Dimensions for products might be in feet in one country and need to be understood in centimeters in another. Similarly, international collaborations in engineering, aviation, and science often require seamless conversion. This converter facilitates such conversions accurately and easily.
+  </p>
+</section>
+
+<section id="conversion-details" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Feet to Centimeters Conversion Table</h2>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Feet [ft]</th>
+        <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Centimeters [cm] (approx.)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 ft</td><td>30.48 cm</td></tr>
+      <tr><td>2 ft</td><td>60.96 cm</td></tr>
+      <tr><td>5 ft</td><td>152.4 cm</td></tr>
+      <tr><td>10 ft</td><td>304.8 cm</td></tr>
+      <tr><td>20 ft</td><td>609.6 cm</td></tr>
+      <tr><td>50 ft</td><td>1524 cm</td></tr>
+      <tr><td>100 ft</td><td>3048 cm</td></tr>
+      <tr><td>1000 ft</td><td>30480 cm</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color: #00509e; margin-top: 30px;">How to Convert Feet to Centimeters</h3>
+  <p>
+    Converting a measurement from feet (ft) to centimeters (cm) is straightforward. The key conversion factor to remember is based on the definition of the international foot:
+  </p>
+  <ul>
+    <li><strong>1 foot is exactly 30.48 centimeters.</strong></li>
+  </ul>
+  <p>
+    To convert any value in feet to centimeters, you simply <strong>multiply</strong> your feet value by <strong>30.48</strong>.
+  </p>
+  <p>
+    <strong>Here's the simple formula:</strong><br>
+    Centimeters = Feet × 30.48
+  </p>
+  <p>
+    <strong>Let's look at an example:</strong>
+    <br>
+    Suppose you have a measurement of <strong>5 feet</strong> and you want to know what that is in centimeters.
+    <br>
+    Using the formula:
+    <br>
+    5 ft × 30.48 = 152.4 cm
+    <br>
+    So, 5 feet is exactly equal to 152.4 centimeters.
+  </p>
+  <p>
+    If you need to convert from centimeters back to feet, remember that <strong>1 centimeter is approximately 1/30.48 feet</strong>. So, you would divide your centimeter value by 30.48.
+  </p>
+</section>
+<section id="popular-conversions" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
+  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Popular Length Unit Conversions</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+    <ul>
+      <li><a href="/cm-to-inches.html">cm to inches</a></li>
+      <li><a href="/inches-to-cm.html">inches to cm</a></li>
+      <li><a href="/mm-to-inches.html">mm to inches</a></li>
+      <li><a href="/inches-to-mm.html">inches to mm</a></li>
+      <li><a href="/meters-to-feet.html">meters to feet</a></li>
+      <li><a href="/feet-to-meters.html">feet to meters</a></li>
+      <li><a href="/km-to-miles.html">km to miles</a></li>
+      <li><a href="/miles-to-km.html">miles to km</a></li>
+    </ul>
+    <ul>
+      <li><a href="/cm-to-feet.html">cm to feet</a></li>
+      <li><a href="/feet-to-cm.html">feet to cm</a></li>
+      <li><a href="/inches-to-feet.html">inches to feet</a></li>
+      <li><a href="/feet-to-inches.html">feet to inches</a></li>
+      <li><a href="/meters-to-yards.html">meters to yards</a></li>
+      <li><a href="/yards-to-meters.html">yards to meters</a></li>
+      <li><a href="/mm-to-cm.html">mm to cm</a></li>
+      <li><a href="/cm-to-mm.html">cm to mm</a></li>
+    </ul>
+    <ul>
+      <li><a href="/cm-to-km.html">cm to km</a></li>
+      <li><a href="/km-to-cm.html">km to cm</a></li>
+      <li><a href="/mm-to-feet.html">mm to feet</a></li>
+      <li><a href="/feet-to-mm.html">feet to mm</a></li>
+      <li><a href="/meters-to-miles.html">meters to miles</a></li>
+      <li><a href="/miles-to-meters.html">miles to meters</a></li>
+      <li><a href="/feet-to-miles.html">feet to miles</a></li>
+      <li><a href="/miles-to-feet.html">miles to feet</a></li>
+    </ul>
+    <ul>
+      <li><a href="/yards-to-feet.html">yards to feet</a></li>
+      <li><a href="/feet-to-yards.html">feet to yards</a></li>
+      <li><a href="/inches-to-meters.html">inches to meters</a></li>
+      <li><a href="/meters-to-inches.html">meters to inches</a></li>
+      <li><a href="/km-to-mm.html">km to mm</a></li>
+      <li><a href="/mm-to-km.html">mm to km</a></li>
+      <li><a href="/inches-to-yards.html">inches to yards</a></li>
+      <li><a href="/yards-to-inches.html">yards to inches</a></li>
+      <li><a href="/yards-to-miles.html">yards to miles</a></li>
+      <li><a href="/miles-to-yards.html">miles to yards</a></li>
+    </ul>
+  </div>
+</section>
+  <footer style="background-color:#007BFF; color:white; padding:20px; text-align:center; margin-top:40px;">
+    <a href="/" style="color:white; margin: 0 15px; text-decoration:none;">Home</a>
+    <a href="/sitemap.html" style="color:white; margin: 0 15px; text-decoration:none;">Sitemap</a>
+    <a href="/about.html" style="color:white; margin: 0 15px; text-decoration:none;">About</a>
+    <a href="/contact.html" style="color:white; margin: 0 15px; text-decoration:none;">Contact</a>
+    <a href="/privacy-policy.html" style="color:white; margin: 0 15px; text-decoration:none;">Privacy Policy</a>
+  </footer>
+
+  <script>
+    const valueInput = document.getElementById('value');
+    const cmResult = document.getElementById('cmResult'); // Changed ID
+
+    function formatNumber(num) {
+      if (num === 0) return '0';
+      if (Math.abs(num) < 1e-7 && num !== 0) {
+        return num.toExponential(6).replace(/\.?0+e/, 'e');
+      }
+      if (Math.abs(num) >= 1e10) {
+         return num.toExponential(6).replace(/\.?0+e/, 'e');
+      }
+      let str = num.toPrecision(10);
+      str = str.replace(/\.?0+$/, '');
+      if (str.includes('.') && str.endsWith('0')) {
+          str = str.replace(/0+$/, '');
+      }
+      if (str.endsWith('.')) {
+          str = str.slice(0, -1);
+      }
+      return str;
+    }
+
+    function convertFeetToCm() { // Changed function name
+      const feetValue = parseFloat(valueInput.value);
+      if (isNaN(feetValue)) {
+        cmResult.textContent = '';
+        return;
+      }
+      // 1 foot = 30.48 cm, so cm = feet * 30.48
+      const cm = feetValue * 30.48;
+      cmResult.textContent = formatNumber(cm);
+    }
+
+    valueInput.addEventListener('input', convertFeetToCm); // Changed event listener
+
+    valueInput.value = 1;
+    convertFeetToCm(); // Initial conversion
+
+    function toggleCategory(event, id) {
+      const el = document.getElementById(id);
+      const btn = event.currentTarget;
+      if (el.style.display === 'block') {
+        el.style.display = 'none';
+        btn.classList.remove('active');
+      } else {
+        el.style.display = 'block';
+        btn.classList.add('active');
+      }
+    }
+
+    function switchConverter() {
+        window.location.href = '/cm-to-feet.html'; // Link to the reverse conversion
+    }
+  </script>
+</body>
+</html> 
