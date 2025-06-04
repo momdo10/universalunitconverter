@@ -1,14 +1,8 @@
 {
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/en"
-    }
-  ],
   "redirects": [
     {
-      "source": "/en",
-      "destination": "/en/index.html",
+      "source": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
@@ -17,37 +11,23 @@
       "permanent": true
     },
     {
-      "source": "/en/index.html",
-      "destination": "/en",
-      "permanent": true
-    },
-    {
       "source": "/sv/index.html",
       "destination": "/sv",
       "permanent": true
     },
     {
-      "source": "/index.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/:path((?!en|sv).*)/",
-      "has": [{ "type": "header", "key": "Accept-Language", "value": "(?i)(en|sv)(?:.*)" }],
-      "destination": "/:path((?!en|sv).*)/en",
-      "statusCode": 307
-    },
-    {
-      "source": "/:path((?!en|sv).*)/",
-      "has": [{ "type": "header", "key": "Accept-Language", "value": "(?i).*sv.*" }],
-      "destination": "/:path((?!en|sv).*)/sv",
-      "statusCode": 307
-    },
-    {
-      "source": "/:path((?!en|sv).*)/",
-      "destination": "/:path((?!en|sv).*)/en",
+      "source": "/:path((?!sv).*)/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i).*sv.*"
+        }
+      ],
+      "destination": "/sv",
       "statusCode": 307
     }
   ]
 }
+
   
