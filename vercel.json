@@ -6,28 +6,18 @@
       "permanent": true
     },
     {
-      "source": "/sv",
-      "destination": "/sv/index.html",
-      "permanent": true
-    },
-    {
       "source": "/sv/index.html",
       "destination": "/sv",
       "permanent": true
-    },
+    }
+  ],
+  "rewrites": [
     {
-      "source": "/:path((?!sv).*)/",
-      "has": [
-        {
-          "type": "header",
-          "key": "Accept-Language",
-          "value": "(?i).*sv.*"
-        }
-      ],
-      "destination": "/sv",
-      "statusCode": 307
+      "source": "/sv",
+      "destination": "/sv/index.html"
     }
   ]
-}
+} 
+
 
   
