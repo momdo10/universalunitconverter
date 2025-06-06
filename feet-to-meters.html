@@ -7,10 +7,22 @@
   <meta name="description" content="Free online converter to instantly convert between feet and meters. Accurate and easy to use." />
   <meta name="keywords" content="ft to m, feet to meters, length converter, unit converter" />
   <meta name="author" content="Universal Unit Converter" />
- <meta name="google-adsense-account" content="ca-pub-8299501777049336">
-  <link rel="icon" href="/favicon.ico" /> 
+
+  <meta name="google-adsense-account" content="ca-pub-8299501777049336">
+
+  <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/c8cd8b35b26a8.js" data-cmp-host="d.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59J56W3M');</script>
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
-     crossorigin="anonymous"></script> 
+       crossorigin="anonymous"></script>
+
+  <link rel="icon" href="/favicon.ico" />
+
   <style>
     body {
       margin: 0;
@@ -163,15 +175,11 @@
     }
   </style>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-16TTL368B1');
-  </script>
 </head>
 <body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59J56W3M"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
   <header>
     Universal Unit Converter
   </header>
@@ -219,8 +227,16 @@
               <li><a href="/length-converter.html">Length</a></li>
               <li><a href="/distance-converter.html">Distance</a></li>
               <li><a href="/cm-to-inches.html">CM to Inches</a></li>
-              <li><a href="/meters-to-feet-converter.html">Meters to Feet</a></li>
-              <li><a href="/feet-to-meters-converter.html">Feet to Meters</a></li>
+              <li><a href="/meters-to-feet.html">Meters to Feet</a></li>
+              <li><a href="/feet-to-meters.html">Feet to Meters</a></li>
+              <li><a href="/cm-to-feet.html">CM to Feet</a></li>
+              <li><a href="/feet-to-cm.html">Feet to CM</a></li>
+              <li><a href="/inches-to-feet.html">Inches to Feet</a></li>
+              <li><a href="/feet-to-inches.html">Feet to Inches</a></li>
+              <li><a href="/meters-to-yards.html">Meters to Yards</a></li>
+              <li><a href="/yards-to-meters.html">Yards to Meters</a></li>
+              <li><a href="/mm-to-cm.html">MM to CM</a></li>
+              <li><a href="/cm-to-mm.html">CM to MM</a></li>
             </ul>
           </li>
           <li>
@@ -301,7 +317,7 @@
   </p>
   <p>
     <strong>Here's the simple formula:</strong><br>
-    Meters = Feet × 0.3048
+    Meters = Feet &times; 0.3048
   </p>
   <p>
     <strong>Let's look at an example:</strong>
@@ -310,7 +326,7 @@
     <br>
     Using the formula:
     <br>
-    25 ft × 0.3048 = 7.62 m
+    25 ft &times; 0.3048 = 7.62 m
     <br>
     So, 25 feet is exactly equal to 7.62 meters.
   </p>
@@ -364,13 +380,12 @@
       <li><a href="/miles-to-yards.html">miles to yards</a></li>
     </ul>
   </div>
-</section> 
+</section>
   <footer style="background-color:#007BFF; color:white; padding:20px; text-align:center; margin-top:40px;">
     <a href="/" style="color:white; margin: 0 15px; text-decoration:none;">Home</a>
     <a href="/sitemap.html" style="color:white; margin: 0 15px; text-decoration:none;">Sitemap</a>
     <a href="/about.html" style="color:white; margin: 0 15px; text-decoration:none;">About</a>
-    <a href="/contact.html" style="color:white; margin: 0 15px; text-decoration:none;">Contact</a>
-    <a href="/privacy-policy.html" style="color:white; margin: 0 15px; text-decoration:none;">Privacy Policy</a>
+    <a href="/contact.html" style="color:white; margin: 0 15px; text-decoration:none;">Privacy Policy</a>
   </footer>
 
   <script>
@@ -379,18 +394,18 @@
 
     function formatNumber(num) {
       if (num === 0) return '0';
-      if (Math.abs(num) < 1e-7 && num !== 0) { 
+      if (Math.abs(num) < 1e-7 && num !== 0) {
         return num.toExponential(6).replace(/\.?0+e/, 'e');
       }
-      if (Math.abs(num) >= 1e10) { 
-         return num.toExponential(6).replace(/\.?0+e/, 'e');
+      if (Math.abs(num) >= 1e10) {
+          return num.toExponential(6).replace(/\.?0+e/, 'e');
       }
-      let str = num.toPrecision(10); 
-      str = str.replace(/\.?0+$/, ''); 
-      if (str.includes('.') && str.endsWith('0')) { 
+      let str = num.toPrecision(10);
+      str = str.replace(/\.?0+$/, '');
+      if (str.includes('.') && str.endsWith('0')) {
           str = str.replace(/0+$/, '');
       }
-      if (str.endsWith('.')) { 
+      if (str.endsWith('.')) {
           str = str.slice(0, -1);
       }
       return str;
@@ -413,7 +428,7 @@
 
     function toggleCategory(event, id) {
       const el = document.getElementById(id);
-      const btn = event.currentTarget; 
+      const btn = event.currentTarget;
       if (el.style.display === 'block') {
         el.style.display = 'none';
         btn.classList.remove('active');
