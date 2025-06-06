@@ -7,20 +7,22 @@
   <meta name="description" content="Instantly convert between mass flow rate units such as kilograms per second, grams per hour, pounds per day, and more." />
   <meta name="keywords" content="mass flow converter, flow rate mass, kg/s to lb/s, gram per hour, pound per day, flow mass unit converter" />
   <meta name="author" content="Universal Unit Converter" />
-  <meta name="google-adsense-account" content="ca-pub-8299501777049336"> 
-  <link rel="icon" href="/favicon.ico" />
+
+  <meta name="google-adsense-account" content="ca-pub-8299501777049336">
+
+  <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/c8cd8b35b26a8.js" data-cmp-host="d.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59J56W3M');</script>
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
-     crossorigin="anonymous"></script> 
+       crossorigin="anonymous"></script>
 
-<!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-16TTL368B1');
-  </script> 
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
 
   <style>
     body {
@@ -80,137 +82,166 @@
       text-align: center;
       margin-top: 3rem;
     }
-    a {
+    footer a { /* Specific style for footer links */
       color: white;
+      margin: 0 15px; /* Added spacing */
+      text-decoration: none; /* Removed underline by default */
+    }
+    footer a:hover { /* Hover effect for footer links */
       text-decoration: underline;
     }
     .main-flex {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin: 2rem auto;
-  max-width: 1200px;
-}
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+      padding: 0 1rem; /* Added padding for smaller screens */
+    }
 
-.converter-column {
-  flex: 1 1 65%;
-}
+    .converter-column {
+      flex: 1 1 65%;
+      min-width: 300px; /* Ensure a minimum width */
+    }
 
-.sidebar {
-  flex: 1 1 30%;
-  background: #ffffff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-}
+    .sidebar {
+      flex: 1 1 30%;
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      min-width: 250px; /* Ensure a minimum width */
+    }
 
-.sidebar h3 {
-  font-size: 1.3rem;
-  color: #007BFF;
-  margin-bottom: 1rem;
-}
+    .sidebar h3 {
+      font-size: 1.3rem;
+      color: #007BFF;
+      margin-bottom: 1rem;
+    }
 
-.sidebar ul {
-  list-style: none;
-  padding-left: 0;
-}
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
 
-.sidebar ul li {
-  margin-bottom: 0.75rem;
-}
+    .sidebar ul li {
+      margin-bottom: 0.75rem;
+    }
 
-.sidebar a {
-  text-decoration: none;
-  color: #333;
-}
+    .sidebar a {
+      text-decoration: none;
+      color: #333;
+    }
 
-.sidebar a:hover {
-  color: #007BFF;
-}
+    .sidebar a:hover {
+      color: #007BFF;
+    }
 
-.collapsible-btn {
-  background: none;
-  border: none;
-  color: #007BFF;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 0;
-  text-align: left;
-  font-weight: bold;
-}
+    .collapsible-btn {
+      background: none;
+      border: none;
+      color: #007BFF;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0;
+      font-weight: bold;
+      width: 100%; /* Make button take full width for consistent click area */
+      text-align: left; /* Align text to left */
+      display: flex; /* Use flexbox for spacing between text and arrow */
+      justify-content: space-between; /* Push arrow to the right */
+      align-items: center; /* Vertically align text and arrow */
+    }
 
-.collapsible-content {
-  list-style: none;
-  padding-left: 1rem;
-  margin-top: 0.5rem;
-  display: none;
-}
+    .collapsible-content {
+      list-style: none;
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
 
-.collapsible-content li {
-  margin-bottom: 0.5rem;
-}
+    .collapsible-content li {
+      margin-bottom: 0.5rem;
+    }
 
-.collapsible-btn::after {
-  content: ' ▼';
-  font-size: 0.8rem;
-  display: inline-block;
-  transform: rotate(0deg);
-  transition: transform 0.3s ease;
-}
+    .collapsible-btn::after {
+      content: ' ▼';
+      font-size: 0.8rem;
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+    }
 
-.collapsible-btn.active::after {
-  transform: rotate(-180deg);
-}
-
+    .collapsible-btn.active::after {
+      transform: rotate(-180deg);
+    }
   </style>
 </head>
 <body>
 
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59J56W3M"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
   <header>Universal Unit Converter</header>
 
   <div class="main-flex">
-  <div class="converter-column">
-    <div class="container">
-      <h1>Flow - Mass Converter</h1>
-      <label for="value">Value:</label>
-      <input type="number" id="value" placeholder="Enter value" />
+    <div class="converter-column">
+      <div class="container">
+        <h1>Flow - Mass Converter</h1>
+        <label for="value">Value:</label>
+        <input type="number" id="value" placeholder="Enter value" />
 
-      <label for="fromUnit">From:</label>
-      <select id="fromUnit"></select>
+        <label for="fromUnit">From:</label>
+        <select id="fromUnit"></select>
 
-      <table id="results">
-        <thead>
-          <tr>
-            <th>Unit</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+        <table id="results">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
+
+    <aside class="sidebar">
+      <div class="all-converters">
+        <h3>All Converters</h3>
+        <ul>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory('fluids-list')">Fluids Converters</button>
+            <ul id="fluids-list" class="collapsible-content">
+              <li><a href="/flow-converter.html">Flow</a></li>
+              <li><a href="/flow-mass-converter.html">Mass Flow</a></li>
+            </ul>
+          </li>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory('length-list')">Length Converters</button>
+            <ul id="length-list" class="collapsible-content">
+              <li><a href="/length-converter.html">Length</a></li>
+              <li><a href="/distance-converter.html">Distance</a></li>
+              <li><a href="/cm-to-inches.html">CM to Inches</a></li>
+              <li><a href="/meters-to-feet.html">Meters to Feet</a></li>
+              <li><a href="/feet-to-meters.html">Feet to Meters</a></li>
+              <li><a href="/cm-to-feet.html">CM to Feet</a></li>
+              <li><a href="/feet-to-cm.html">Feet to CM</a></li>
+              <li><a href="/inches-to-feet.html">Inches to Feet</a></li>
+              <li><a href="/feet-to-inches.html">Feet to Inches</a></li>
+              <li><a href="/meters-to-yards.html">Meters to Yards</a></li>
+              <li><a href="/yards-to-meters.html">Yards to Meters</a></li>
+              <li><a href="/mm-to-cm.html">MM to CM</a></li>
+              <li><a href="/cm-to-mm.html">CM to MM</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
   </div>
 
-  <aside class="sidebar">
-    <div class="all-converters">
-      <h3>All Converters</h3>
-      <ul>
-        <li>
-          <button class="collapsible-btn" onclick="toggleCategory('fluids-list')">Fluids Converters</button>
-          <ul id="fluids-list" class="collapsible-content">
-            <li><a href="/flow-converter.html">Flow</a></li>
-            <li><a href="/flow-mass-converter.html">Mass Flow</a></li>
-          </ul>
-        </li>
-        <!-- You can add more categories below if needed -->
-      </ul>
-    </div>
-  </aside>
-</div>
-
-
   <footer>
-    <a href="/">Home</a> | <a href="/sitemap.html">Sitemap</a> | <a href="/about.html">About</a> | <a href="/contact.html">Contact</a>
+    <a href="/">Home</a> | <a href="/sitemap.html">Sitemap</a> | <a href="/about.html">About</a> | <a href="/contact.html">Contact</a> | <a href="/privacy-policy.html">Privacy Policy</a>
   </footer>
 
   <script>
@@ -252,6 +283,23 @@
     const fromUnit = document.getElementById('fromUnit');
     const resultsBody = document.querySelector('#results tbody');
 
+    // Function to format numbers for display
+    function formatNumber(num) {
+        if (num === 0) return '0';
+        // Use exponential notation for very small or very large numbers
+        if (Math.abs(num) < 1e-7 || Math.abs(num) >= 1e10) {
+            return num.toExponential(6).replace(/\.?0+e/, 'e');
+        }
+        // Use toPrecision for general formatting and remove trailing zeros/dots
+        let str = num.toPrecision(10);
+        str = str.replace(/\.?0+$/, ''); // Remove trailing zeros after decimal point
+        if (str.endsWith('.')) {
+            str = str.slice(0, -1); // Remove trailing dot if no digits follow
+        }
+        return str;
+    }
+
+
     units.forEach(unit => {
       const option = document.createElement('option');
       option.value = unit.factor;
@@ -267,36 +315,40 @@
       }
 
       const fromFactor = parseFloat(fromUnit.value);
-      const baseValue = inputValue * fromFactor;
+      const baseValue = inputValue * fromFactor; // Convert input value to base unit (kg/s)
 
-      resultsBody.innerHTML = '';
+      resultsBody.innerHTML = ''; // Clear previous results
 
       units.forEach(unit => {
-        const converted = baseValue / unit.factor;
+        const converted = baseValue / unit.factor; // Convert from base unit to target unit
         const row = document.createElement('tr');
         const unitCell = document.createElement('td');
         const valueCell = document.createElement('td');
         unitCell.textContent = unit.name;
-        valueCell.textContent = converted.toPrecision(10);
+        valueCell.textContent = formatNumber(converted); // Use the new formatNumber function
         row.appendChild(unitCell);
         row.appendChild(valueCell);
         resultsBody.appendChild(row);
       });
     }
 
+    // Set an initial value and update results on page load
+    valueInput.value = 1;
+    updateResults();
+
     valueInput.addEventListener('input', updateResults);
     fromUnit.addEventListener('change', updateResults);
   </script>
-<script>
-  function toggleCategory(id) {
-    const list = document.getElementById(id);
-    const button = list.previousElementSibling;
-    const isOpen = list.style.display === "block";
+  <script>
+    function toggleCategory(id) {
+      const list = document.getElementById(id);
+      const button = list.previousElementSibling;
+      const isOpen = list.style.display === "block";
 
-    list.style.display = isOpen ? "none" : "block";
-    button.classList.toggle("active", !isOpen);
-  }
-</script>
+      list.style.display = isOpen ? "none" : "block";
+      button.classList.toggle("active", !isOpen);
+    }
+  </script>
 
 </body>
-</html>
+</html> 
