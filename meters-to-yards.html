@@ -8,9 +8,20 @@
   <meta name="keywords" content="m to yd, meters to yards, length converter, unit converter" />
   <meta name="author" content="Universal Unit Converter" />
   <link rel="icon" href="/favicon.ico" />
-  <meta name="google-adsense-account" content="ca-pub-8299501777049336"> 
+  
+  <meta name="google-adsense-account" content="ca-pub-8299501777049336">
+  
+  <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/c8cd8b35b26a8.js" data-cmp-host="d.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59J56W3M');</script>
+  
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
-     crossorigin="anonymous"></script> 
+       crossorigin="anonymous"></script> 
+  
   <style>
     body {
       margin: 0;
@@ -116,7 +127,6 @@
       cursor: pointer;
       padding: 0;
       font-weight: bold;
-      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -160,15 +170,11 @@
     }
   </style>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-16TTL368B1');
-  </script>
 </head>
 <body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59J56W3M"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
   <header>
     Universal Unit Converter
   </header>
@@ -303,7 +309,7 @@
   </p>
   <p>
     <strong>Here's the simple formula:</strong><br>
-    Yards = Meters × 1.09361
+    Yards = Meters &times; 1.09361
   </p>
   <p>
     <strong>Let's look at an example:</strong>
@@ -312,7 +318,7 @@
     <br>
     Using the formula:
     <br>
-    10 m × 1.09361 = 10.9361 yd
+    10 m &times; 1.09361 = 10.9361 yd
     <br>
     So, 10 meters is approximately equal to 10.9361 yards.
   </p>
@@ -370,8 +376,7 @@
   <footer style="background-color:#007BFF; color:white; padding:20px; text-align:center; margin-top:40px;">
     <a href="/" style="color:white; margin: 0 15px; text-decoration:none;">Home</a>
     <a href="/sitemap.html" style="color:white; margin: 0 15px; text-decoration:none;">Sitemap</a>
-    <a href="/about.html" style="color:white; margin: 0 15px; text-decoration:none;">About</a>
-    <a href="/contact.html" style="color:white; margin: 0 15px; text-decoration:none;">Contact</a>
+    <a href="/about.html" style="color:white; margin: 0 15px; text-decoration:none;">Contact</a>
     <a href="/privacy-policy.html" style="color:white; margin: 0 15px; text-decoration:none;">Privacy Policy</a>
   </footer>
 
@@ -385,15 +390,15 @@
         return num.toExponential(6).replace(/\.?0+e/, 'e');
       }
       if (Math.abs(num) >= 1e10) {
-         return num.toExponential(6).replace(/\.?0+e/, 'e');
+           return num.toExponential(6).replace(/\.?0+e/, 'e');
       }
       let str = num.toPrecision(10);
       str = str.replace(/\.?0+$/, '');
       if (str.includes('.') && str.endsWith('0')) {
-          str = str.replace(/0+$/, '');
+           str = str.replace(/0+$/, '');
       }
       if (str.endsWith('.')) {
-          str = str.slice(0, -1);
+           str = str.slice(0, -1);
       }
       return str;
     }
@@ -416,7 +421,7 @@
 
     function toggleCategory(event, id) {
       const el = document.getElementById(id);
-      const btn = event.currentTarget;
+      const btn = event.currentTarget; // Use currentTarget for event delegation
       if (el.style.display === 'block') {
         el.style.display = 'none';
         btn.classList.remove('active');
