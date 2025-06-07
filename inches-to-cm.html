@@ -7,10 +7,21 @@
   <meta name="description" content="Free online converter to instantly convert between inches and centimeters. Accurate and easy to use." />
   <meta name="keywords" content="inches to cm, inches to centimeters, length converter, unit converter" />
   <meta name="author" content="Universal Unit Converter" />
-  <meta name="google-adsense-account" content="ca-pub-8299501777049336"> 
+
+  <meta name="google-adsense-account" content="ca-pub-8299501777049336">
+
+  <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/c8cd8b35b26a8.js" data-cmp-host="d.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59J56W3M');</script>
+
+  <script async src="https://pagead2.googicConversionTable.htmlleapis.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
+       crossorigin="anonymous"></script>
+
   <link rel="icon" href="/favicon.ico" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
-     crossorigin="anonymous"></script> 
   <style>
     body {
       margin: 0;
@@ -37,16 +48,21 @@
     h1 {
       text-align: center;
       margin-bottom: 25px;
+      color: #007BFF; /* Added color for consistency */
     }
     label {
       font-weight: bold;
+      display: block; /* Ensures label takes full width */
+      margin-bottom: 5px; /* Space between label and input */
     }
     input, select {
       padding: 10px;
       font-size: 1em;
       margin-bottom: 20px;
       width: 100%;
-      max-width: 400px;
+      max-width: 400px; /* Kept max-width for inputs */
+      border: 1px solid #ccc; /* Added border for consistency */
+      border-radius: 5px; /* Added border-radius */
     }
     table {
       width: 100%;
@@ -66,6 +82,13 @@
       input, select {
         max-width: 100%;
       }
+      .main-flex {
+        flex-direction: column; /* Stack columns on small screens */
+        padding: 0 15px; /* Add padding to main-flex for smaller screens */
+      }
+      .converter-column, .sidebar {
+        min-width: unset; /* Remove min-width on small screens */
+      }
     }
     .main-flex {
       display: flex;
@@ -74,9 +97,11 @@
       gap: 1.5rem;
       margin: 2rem auto;
       max-width: 1200px;
+      padding: 0 1rem; /* Added padding for smaller screens */
     }
     .converter-column {
       flex: 1 1 65%;
+      min-width: 300px; /* Ensure a minimum width */
     }
     .sidebar {
       flex: 1 1 30%;
@@ -84,6 +109,7 @@
       padding: 1rem;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      min-width: 250px; /* Ensure a minimum width */
     }
     .sidebar h3 {
       font-size: 1.3rem;
@@ -111,8 +137,12 @@
       font-size: 1rem;
       cursor: pointer;
       padding: 0;
-      text-align: left;
       font-weight: bold;
+      width: 100%; /* Make button take full width for consistent click area */
+      text-align: left; /* Align text to left */
+      display: flex; /* Use flexbox for spacing between text and arrow */
+      justify-content: space-between; /* Push arrow to the right */
+      align-items: center; /* Vertically align text and arrow */
     }
     .collapsible-content {
       list-style: none;
@@ -136,7 +166,7 @@
     .switch-button-container {
         text-align: center;
         margin-top: 15px;
-        margin-bottom: 20px; /* Added for spacing */
+        margin-bottom: 20px;
     }
     .switch-button {
         background-color: #007BFF;
@@ -151,17 +181,71 @@
     .switch-button:hover {
         background-color: #0056b3;
     }
-  </style>
+    footer { /* Specific style for footer */
+      background-color: #007BFF;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 3rem; /* Adjusted margin-top for consistency */
+    }
+    footer a { /* Specific style for footer links */
+      color: white;
+      margin: 0 15px; /* Added spacing */
+      text-decoration: none; /* Removed underline by default */
+    }
+    footer a:hover { /* Hover effect for footer links */
+      text-decoration: underline;
+    }
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-16TTL368B1');
-  </script>
+    /* Styles for the information sections */
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f9fbfd;
+      border: 1px solid #cce4ff;
+      border-radius: 8px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #0a2540;
+      line-height: 1.6;
+    }
+    section h2 {
+      color: #0066cc;
+      border-bottom: 2px solid #66a3ff;
+      padding-bottom: 6px;
+      margin-bottom: 20px;
+    }
+    section h3 {
+      color: #00509e;
+      margin-top: 30px;
+    }
+    section ul {
+      list-style-type: disc; /* Ensure consistent bullet points */
+      margin-left: 20px;
+    }
+    section ul li {
+      margin-bottom: 8px;
+    }
+    section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    section table th, section table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+      background-color: #ffffff; /* Ensure table cells have white background */
+    }
+    section table th {
+      background-color: #f2f2f2;
+    }
+  </style>
 </head>
 <body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59J56W3M"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
   <header>
     Universal Unit Converter
   </header>
@@ -204,155 +288,170 @@
         <h3>All Converters</h3>
         <ul>
           <li>
-            <button class="collapsible-btn" onclick="toggleCategory('length-list')">Length Converters</button>
-            <ul id="length-list" class="collapsible-content">
-              <li><a href="/length-converter.html">Length</a></li>
-              <li><a href="/distance-converter.html">Distance</a></li>
-            </ul>
-          </li>
-          <li>
             <button class="collapsible-btn" onclick="toggleCategory('fluids-list')">Fluids Converters</button>
             <ul id="fluids-list" class="collapsible-content">
               <li><a href="/flow-converter.html">Flow</a></li>
               <li><a href="/flow-mass-converter.html">Mass Flow</a></li>
+              <li><a href="/flow-molar-converter.html">Molar Flow</a></li>
+            </ul>
+          </li>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory('length-list')">Length Converters</button>
+            <ul id="length-list" class="collapsible-content">
+              <li><a href="/length-converter.html">Length</a></li>
+              <li><a href="/distance-converter.html">Distance</a></li>
+              <li><a href="/cm-to-inches.html">CM to Inches</a></li>
+              <li><a href="/meters-to-feet.html">Meters to Feet</a></li>
+              <li><a href="/feet-to-meters.html">Feet to Meters</a></li>
+              <li><a href="/cm-to-feet.html">CM to Feet</a></li>
+              <li><a href="/feet-to-cm.html">Feet to CM</a></li>
+              <li><a href="/inches-to-feet.html">Inches to Feet</a></li>
+              <li><a href="/feet-to-inches.html">Feet to Inches</a></li>
+              <li><a href="/meters-to-yards.html">Meters to Yards</a></li>
+              <li><a href="/yards-to-meters.html">Yards to Meters</a></li>
+              <li><a href="/mm-to-cm.html">MM to CM</a></li>
+              <li><a href="/cm-to-mm.html">CM to MM</a></li>
             </ul>
           </li>
           </ul>
       </div>
     </aside>
   </div>
-<section id="length-info" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
-  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Understanding Inches and Centimeters</h2>
-  <p>
-    When measuring length, two of the most commonly encountered units are the <strong>inch (in)</strong> and the <strong>centimeter (cm)</strong>. While both serve the purpose of quantifying distance, they belong to different measurement systems and are widely used in different parts of the world. Understanding their origins and common applications helps in appreciating why conversion between them is so essential in our interconnected world.
-  </p>
 
-  <h3 style="color: #00509e; margin-top: 30px;">What is an Inch (in)?</h3>
-  <p>
-    The inch is a unit of length primarily used in the <strong>imperial system</strong> and the <strong>U.S. customary system</strong> of measurement. Unlike the metric system's decimal basis, the imperial system has historical roots with units often based on human body parts or natural phenomena.
-  </p>
-  <ul>
-    <li><strong>Origin:</strong> The inch has a long history, with its definition evolving over centuries. Traditionally, it was defined in various ways, including the width of a man's thumb or three barleycorns laid end to end.</li>
-    <li><strong>Definition:</strong> Today, the international inch is precisely defined as <strong>2.54 centimeters</strong>. This standardization occurred in 1959, simplifying conversions between the imperial and metric systems.</li>
-    <li><strong>Common Uses:</strong> Inches are widely used in the United States, the United Kingdom (though largely transitioned to metric for official purposes, inches remain common in certain sectors like construction and textiles), and Canada. It's often used for screen sizes (e.g., TVs, monitors), tire diameters, and various DIY measurements.</li>
-  </ul>
+  <section id="length-info">
+    <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Understanding Inches and Centimeters</h2>
+    <p>
+      When measuring length, two of the most commonly encountered units are the <strong>inch (in)</strong> and the <strong>centimeter (cm)</strong>. While both serve the purpose of quantifying distance, they belong to different measurement systems and are widely used in different parts of the world. Understanding their origins and common applications helps in appreciating why conversion between them is so essential in our interconnected world.
+    </p>
 
-  <h3 style="color: #00509e; margin-top: 30px;">What is a Centimeter (cm)?</h3>
-  <p>
-    The centimeter is a unit of length in the <strong>metric system</strong>, which is an internationally agreed-upon decimal system of measurement. The metric system is lauded for its logical structure, where units are related by powers of 10. A centimeter literally means "one hundredth of a meter," as "centi-" is a prefix denoting 1/100.
-  </p>
-  <ul>
-    <li><strong>Origin:</strong> The metric system originated in France during the late 18th century and has since been adopted by most countries globally for scientific, commercial, and everyday use.</li>
-    <li><strong>Definition:</strong> One centimeter is precisely defined as 0.01 meters. The meter itself is the base unit of length in the International System of Units (SI) and is defined by the distance light travels in a vacuum in 1/299,792,458 of a second.</li>
-    <li><strong>Common Uses:</strong> Centimeters are frequently used for everyday measurements where a small unit is needed, such as measuring the length of paper, fabric, human height, or the dimensions of small objects. It's particularly prevalent in fields like fashion, construction, and medicine in metric-system countries.</li>
-  </ul>
-
-  <h3 style="color: #00509e; margin-top: 30px;">Why Convert Between Inches and CM?</h3>
-  <p>
-    The need to convert between inches and centimeters arises due to the coexistence of both measurement systems in global trade, manufacturing, and personal preferences. For instance, a product designed in an imperial country might be sold in a metric country, necessitating accurate conversions for consumers and professionals alike. This converter aims to bridge that gap seamlessly.
-  </p>
-</section>
-
-<section id="conversion-details" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
-  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Inch to Centimeter Conversion Table</h2>
-  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-    <thead>
-      <tr>
-        <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Inch [in]</th>
-        <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Centimeter [cm]</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>0.01 in</td><td>0.0254 cm</td></tr>
-      <tr><td>0.1 in</td><td>0.254 cm</td></tr>
-      <tr><td>1 in</td><td>2.54 cm</td></tr>
-      <tr><td>2 in</td><td>5.08 cm</td></tr>
-      <tr><td>3 in</td><td>7.62 cm</td></tr>
-      <tr><td>5 in</td><td>12.7 cm</td></tr>
-      <tr><td>10 in</td><td>25.4 cm</td></tr>
-      <tr><td>20 in</td><td>50.8 cm</td></tr>
-      <tr><td>50 in</td><td>127 cm</td></tr>
-      <tr><td>100 in</td><td>254 cm</td></tr>
-      <tr><td>1000 in</td><td>2540 cm</td></tr>
-    </tbody>
-  </table>
-
-  <h3 style="color: #00509e; margin-top: 30px;">How to Convert Inches to Centimeters</h3>
-  <p>
-    Converting a measurement from inches (in) to centimeters (cm) is quite simple. You just need to remember one key number:
-  </p>
-  <ul>
-    <li><strong>1 inch is equal to exactly 2.54 centimeters.</strong></li>
-  </ul>
-  <p>
-    This means that to convert any value in inches to centimeters, you simply <strong>multiply</strong> your inch value by <strong>2.54</strong>.
-  </p>
-  <p>
-    <strong>Here's the simple formula:</strong><br>
-    Centimeters = Inches × 2.54
-  </p>
-  <p>
-    <strong>Let's look at an example:</strong>
-    <br>
-    Suppose you have a measurement of <strong>10 inches</strong> and you want to know what that is in centimeters.
-    <br>
-    Using our formula:
-    <br>
-    10 in × 2.54 = 25.4 cm
-    <br>
-    So, 10 inches is exactly equal to 25.4 centimeters. It's that easy!
-  </p>
-  <p>
-    If you ever need to convert from centimeters back to inches, remember that <strong>1 centimeter is approximately 0.393701 inches</strong>. So, you would multiply your centimeter value by 0.393701.
-  </p>
-</section>
-<section id="popular-conversions" style="max-width: 900px; margin: 40px auto; padding: 20px; background: #f9fbfd; border: 1px solid #cce4ff; border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0a2540; line-height: 1.6;">
-  <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Popular Length Unit Conversions</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+    <h3 style="color: #00509e; margin-top: 30px;">What is an Inch (in)?</h3>
+    <p>
+      The inch is a unit of length primarily used in the <strong>imperial system</strong> and the <strong>U.S. customary system</strong> of measurement. Unlike the metric system's decimal basis, the imperial system has historical roots with units often based on human body parts or natural phenomena.
+    </p>
     <ul>
-      <li><a href="/cm-to-inches.html">cm to inches</a></li>
-      <li><a href="/inches-to-cm.html">inches to cm</a></li>
-      <li><a href="/mm-to-inches.html">mm to inches</a></li>
-      <li><a href="/inches-to-mm.html">inches to mm</a></li>
-      <li><a href="/meters-to-feet-converter.html">meters to feet</a></li>
-      <li><a href="/feet-to-meters-converter.html">feet to meters</a></li>
-      <li><a href="/km-to-miles.html">km to miles</a></li>
-      <li><a href="/miles-to-km.html">miles to km</a></li>
+      <li><strong>Origin:</strong> The inch has a long history, with its definition evolving over centuries. Traditionally, it was defined in various ways, including the width of a man's thumb or three barleycorns laid end to end.</li>
+      <li><strong>Definition:</strong> Today, the international inch is precisely defined as <strong>2.54 centimeters</strong>. This standardization occurred in 1959, simplifying conversions between the imperial and metric systems.</li>
+      <li><strong>Common Uses:</strong> Inches are widely used in the United States, the United Kingdom (though largely transitioned to metric for official purposes, inches remain common in certain sectors like construction and textiles), and Canada. It's often used for screen sizes (e.g., TVs, monitors), tire diameters, and various DIY measurements.</li>
     </ul>
+
+    <h3 style="color: #00509e; margin-top: 30px;">What is a Centimeter (cm)?</h3>
+    <p>
+      The centimeter is a unit of length in the <strong>metric system</strong>, which is an internationally agreed-upon decimal system of measurement. The metric system is lauded for its logical structure, where units are related by powers of 10. A centimeter literally means "one hundredth of a meter," as "centi-" is a prefix denoting 1/100.
+    </p>
     <ul>
-      <li><a href="/cm-to-feet.html">cm to feet</a></li>
-      <li><a href="/feet-to-cm.html">feet to cm</a></li>
-      <li><a href="/inches-to-feet.html">inches to feet</a></li>
-      <li><a href="/feet-to-inches.html">feet to inches</a></li>
-      <li><a href="/meters-to-yards.html">meters to yards</a></li>
-      <li><a href="/yards-to-meters.html">yards to meters</a></li>
-      <li><a href="/mm-to-cm.html">mm to cm</a></li>
-      <li><a href="/cm-to-mm.html">cm to mm</a></li>
+      <li><strong>Origin:</strong> The metric system originated in France during the late 18th century and has since been adopted by most countries globally for scientific, commercial, and everyday use.</li>
+      <li><strong>Definition:</strong> One centimeter is precisely defined as 0.01 meters. The meter itself is the base unit of length in the International System of Units (SI) and is defined by the distance light travels in a vacuum in 1/299,792,458 of a second.</li>
+      <li><strong>Common Uses:</strong> Centimeters are frequently used for everyday measurements where a small unit is needed, such as measuring the length of paper, fabric, human height, or the dimensions of small objects. It's particularly prevalent in fields like fashion, construction, and medicine in metric-system countries.</li>
     </ul>
+
+    <h3 style="color: #00509e; margin-top: 30px;">Why Convert Between Inches and CM?</h3>
+    <p>
+      The need to convert between inches and centimeters arises due to the coexistence of both measurement systems in global trade, manufacturing, and personal preferences. For instance, a product designed in an imperial country might be sold in a metric country, necessitating accurate conversions for consumers and professionals alike. This converter aims to bridge that gap seamlessly.
+    </p>
+  </section>
+
+  <section id="conversion-details">
+    <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Inch to Centimeter Conversion Table</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Inch [in]</th>
+          <th style="border: 1px solid #ccc; padding: 10px; text-align: left; background-color: #f2f2f2;">Centimeter [cm]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>0.01 in</td><td>0.0254 cm</td></tr>
+        <tr><td>0.1 in</td><td>0.254 cm</td></tr>
+        <tr><td>1 in</td><td>2.54 cm</td></tr>
+        <tr><td>2 in</td><td>5.08 cm</td></tr>
+        <tr><td>3 in</td><td>7.62 cm</td></tr>
+        <tr><td>5 in</td><td>12.7 cm</td></tr>
+        <tr><td>10 in</td><td>25.4 cm</td></tr>
+        <tr><td>20 in</td><td>50.8 cm</td></tr>
+        <tr><td>50 in</td><td>127 cm</td></tr>
+        <tr><td>100 in</td><td>254 cm</td></tr>
+        <tr><td>1000 in</td><td>2540 cm</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="color: #00509e; margin-top: 30px;">How to Convert Inches to Centimeters</h3>
+    <p>
+      Converting a measurement from inches (in) to centimeters (cm) is quite simple. You just need to remember one key number:
+    </p>
     <ul>
-      <li><a href="/cm-to-km.html">cm to km</a></li>
-      <li><a href="/km-to-cm.html">km to cm</a></li>
-      <li><a href="/mm-to-feet.html">mm to feet</a></li>
-      <li><a href="/feet-to-mm.html">feet to mm</a></li>
-      <li><a href="/meters-to-miles.html">meters to miles</a></li>
-      <li><a href="/miles-to-meters.html">miles to meters</a></li>
-      <li><a href="/feet-to-miles.html">feet to miles</a></li>
-      <li><a href="/miles-to-feet.html">miles to feet</a></li>
+      <li><strong>1 inch is equal to exactly 2.54 centimeters.</strong></li>
     </ul>
-    <ul>
-      <li><a href="/yards-to-feet.html">yards to feet</a></li>
-      <li><a href="/feet-to-yards.html">feet to yards</a></li>
-      <li><a href="/inches-to-meters.html">inches to meters</a></li>
-      <li><a href="/meters-to-inches.html">meters to inches</a></li>
-      <li><a href="/km-to-mm.html">km to mm</a></li>
-      <li><a href="/mm-to-km.html">mm to km</a></li>
-      <li><a href="/inches-to-yards.html">inches to yards</a></li>
-      <li><a href="/yards-to-inches.html">yards to inches</a></li>
-      <li><a href="/yards-to-miles.html">yards to miles</a></li>
-      <li><a href="/miles-to-yards.html">miles to yards</a></li>
-    </ul>
-  </div>
-</section> 
+    <p>
+      This means that to convert any value in inches to centimeters, you simply <strong>multiply</strong> your inch value by <strong>2.54</strong>.
+    </p>
+    <p>
+      <strong>Here's the simple formula:</strong><br>
+      Centimeters = Inches × 2.54
+    </p>
+    <p>
+      <strong>Let's look at an example:</strong>
+      <br>
+      Suppose you have a measurement of <strong>10 inches</strong> and you want to know what that is in centimeters.
+      <br>
+      Using our formula:
+      <br>
+      10 in × 2.54 = 25.4 cm
+      <br>
+      So, 10 inches is exactly equal to 25.4 centimeters. It's that easy!
+    </p>
+    <p>
+      If you ever need to convert from centimeters back to inches, remember that <strong>1 centimeter is approximately 0.393701 inches</strong>. So, you would multiply your centimeter value by 0.393701.
+    </p>
+  </section>
+
+  <section id="popular-conversions">
+    <h2 style="color: #0066cc; border-bottom: 2px solid #66a3ff; padding-bottom: 6px; margin-bottom: 20px;">Popular Length Unit Conversions</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+      <ul>
+        <li><a href="/cm-to-inches.html">cm to inches</a></li>
+        <li><a href="/inches-to-cm.html">inches to cm</a></li>
+        <li><a href="/mm-to-inches.html">mm to inches</a></li>
+        <li><a href="/inches-to-mm.html">inches to mm</a></li>
+        <li><a href="/meters-to-feet.html">meters to feet</a></li>
+        <li><a href="/feet-to-meters.html">feet to meters</a></li>
+        <li><a href="/km-to-miles.html">km to miles</a></li>
+        <li><a href="/miles-to-km.html">miles to km</a></li>
+      </ul>
+      <ul>
+        <li><a href="/cm-to-feet.html">cm to feet</a></li>
+        <li><a href="/feet-to-cm.html">feet to cm</a></li>
+        <li><a href="/inches-to-feet.html">inches to feet</a></li>
+        <li><a href="/feet-to-inches.html">feet to inches</a></li>
+        <li><a href="/meters-to-yards.html">meters to yards</a></li>
+        <li><a href="/yards-to-meters.html">yards to meters</a></li>
+        <li><a href="/mm-to-cm.html">mm to cm</a></li>
+        <li><a href="/cm-to-mm.html">cm to mm</a></li>
+      </ul>
+      <ul>
+        <li><a href="/cm-to-km.html">cm to km</a></li>
+        <li><a href="/km-to-cm.html">km to cm</a></li>
+        <li><a href="/mm-to-feet.html">mm to feet</a></li>
+        <li><a href="/feet-to-mm.html">feet to mm</a></li>
+        <li><a href="/meters-to-miles.html">meters to miles</a></li>
+        <li><a href="/miles-to-meters.html">miles to meters</a></li>
+        <li><a href="/feet-to-miles.html">feet to miles</a></li>
+        <li><a href="/miles-to-feet.html">miles to feet</a></li>
+      </ul>
+      <ul>
+        <li><a href="/yards-to-feet.html">yards to feet</a></li>
+        <li><a href="/feet-to-yards.html">feet to yards</a></li>
+        <li><a href="/inches-to-meters.html">inches to meters</a></li>
+        <li><a href="/meters-to-inches.html">meters to inches</a></li>
+        <li><a href="/km-to-mm.html">km to mm</a></li>
+        <li><a href="/mm-to-km.html">mm to km</a></li>
+        <li><a href="/inches-to-yards.html">inches to yards</a></li>
+        <li><a href="/yards-to-inches.html">yards to inches</a></li>
+        <li><a href="/yards-to-miles.html">yards to miles</a></li>
+        <li><a href="/miles-to-yards.html">miles to yards</a></li>
+      </ul>
+    </div>
+  </section>
+
   <footer style="background-color:#007BFF; color:white; padding:20px; text-align:center; margin-top:40px;">
     <a href="/" style="color:white; margin: 0 15px; text-decoration:none;">Home</a>
     <a href="/sitemap.html" style="color:white; margin: 0 15px; text-decoration:none;">Sitemap</a>
@@ -363,19 +462,22 @@
 
   <script>
     const valueInput = document.getElementById('value');
-    const cmResult = document.getElementById('cmResult'); // Changed to cmResult
+    const cmResult = document.getElementById('cmResult');
 
     function formatNumber(num) {
       if (num === 0) return '0';
-      if (Math.abs(num) < 1e-6 || Math.abs(num) > 1e9) {
+      if (Math.abs(num) < 1e-7 || Math.abs(num) >= 1e10) { // Adjusted range for exponential notation
         return num.toExponential(6).replace(/\.?0+e/, 'e');
       }
       let str = num.toPrecision(10);
-      str = str.replace(/\.?0+$/, '');
+      str = str.replace(/\.?0+$/, ''); // Remove trailing zeros after decimal point
+      if (str.endsWith('.')) {
+        str = str.slice(0, -1); // Remove trailing dot if no digits follow
+      }
       return str;
     }
 
-    function convertInchesToCm() { // Renamed function
+    function convertInchesToCm() {
       const inchValue = parseFloat(valueInput.value);
       if (isNaN(inchValue)) {
         cmResult.textContent = '';
@@ -389,21 +491,18 @@
 
     valueInput.addEventListener('input', convertInchesToCm);
 
-    // Initialize default
+    // Initialize default value and conversion on page load
     valueInput.value = 1;
     convertInchesToCm();
 
     // Sidebar collapsible (kept for overall site navigation)
     function toggleCategory(id) {
       const el = document.getElementById(id);
-      const btn = event.target;
-      if (el.style.display === 'block') {
-        el.style.display = 'none';
-        btn.classList.remove('active');
-      } else {
-        el.style.display = 'block';
-        btn.classList.add('active');
-      }
+      const btn = event.target; // Use event.target to get the clicked button
+      const isOpen = el.style.display === 'block'; // Check current state
+
+      el.style.display = isOpen ? 'none' : 'block';
+      btn.classList.toggle('active', !isOpen);
     }
 
     // Function to switch converter page
@@ -412,4 +511,4 @@
     }
   </script>
 </body>
-</html>
+</html> 
