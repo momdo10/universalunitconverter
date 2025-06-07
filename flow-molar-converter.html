@@ -7,19 +7,23 @@
   <meta name="description" content="Convert molar flow units instantly: mol/s, kmol/min, mmol/day, and more." />
   <meta name="keywords" content="molar flow converter, mol/s to kmol/s, mmol/minute, mol per hour, universal unit converter" />
   <meta name="author" content="Universal Unit Converter" />
-  <meta name="google-adsense-account" content="ca-pub-8299501777049336"> 
-  <link rel="icon" href="/favicon.ico" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
-     crossorigin="anonymous"></script> 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-16TTL368B1');
-</script>
+  <meta name="google-adsense-account" content="ca-pub-8299501777049336">
+
+  <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/c8cd8b35b26a8.js" data-cmp-host="d.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59J56W3M');</script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
+       crossorigin="anonymous"></script>
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -42,9 +46,11 @@
       gap: 1.5rem;
       margin: 2rem auto;
       max-width: 1200px;
+      padding: 0 1rem; /* Added padding for smaller screens */
     }
     .converter-column {
       flex: 1 1 65%;
+      min-width: 300px; /* Ensure a minimum width */
     }
     .container {
       background: white;
@@ -86,6 +92,7 @@
       padding: 1rem;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      min-width: 250px; /* Ensure a minimum width */
     }
     .sidebar h3 {
       font-size: 1.3rem;
@@ -113,8 +120,12 @@
       font-size: 1rem;
       cursor: pointer;
       padding: 0;
-      text-align: left;
       font-weight: bold;
+      width: 100%; /* Make button take full width for consistent click area */
+      text-align: left; /* Align text to left */
+      display: flex; /* Use flexbox for spacing between text and arrow */
+      justify-content: space-between; /* Push arrow to the right */
+      align-items: center; /* Vertically align text and arrow */
     }
     .collapsible-content {
       list-style: none;
@@ -142,13 +153,20 @@
       text-align: center;
       margin-top: 3rem;
     }
-    footer a {
+    footer a { /* Specific style for footer links */
       color: white;
+      margin: 0 15px; /* Added spacing */
+      text-decoration: none; /* Removed underline by default */
+    }
+    footer a:hover { /* Hover effect for footer links */
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
+
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59J56W3M"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <header>Universal Unit Converter</header>
 
@@ -186,13 +204,31 @@
               <li><a href="/flow-molar-converter.html">Molar Flow</a></li>
             </ul>
           </li>
+          <li>
+            <button class="collapsible-btn" onclick="toggleCategory('length-list')">Length Converters</button>
+            <ul id="length-list" class="collapsible-content">
+              <li><a href="/length-converter.html">Length</a></li>
+              <li><a href="/distance-converter.html">Distance</a></li>
+              <li><a href="/cm-to-inches.html">CM to Inches</a></li>
+              <li><a href="/meters-to-feet.html">Meters to Feet</a></li>
+              <li><a href="/feet-to-meters.html">Feet to Meters</a></li>
+              <li><a href="/cm-to-feet.html">CM to Feet</a></li>
+              <li><a href="/feet-to-cm.html">Feet to CM</a></li>
+              <li><a href="/inches-to-feet.html">Inches to Feet</a></li>
+              <li><a href="/feet-to-inches.html">Feet to Inches</a></li>
+              <li><a href="/meters-to-yards.html">Meters to Yards</a></li>
+              <li><a href="/yards-to-meters.html">Yards to Meters</a></li>
+              <li><a href="/mm-to-cm.html">MM to CM</a></li>
+              <li><a href="/cm-to-mm.html">CM to MM</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </aside>
   </div>
 
   <footer>
-    <a href="/">Home</a> | <a href="/sitemap.html">Sitemap</a> | <a href="/about.html">About</a> | <a href="/contact.html">Contact</a>
+    <a href="/">Home</a> | <a href="/sitemap.html">Sitemap</a> | <a href="/about.html">About</a> | <a href="/contact.html">Contact</a> | <a href="/privacy-policy.html">Privacy Policy</a>
   </footer>
 
   <script>
@@ -229,6 +265,22 @@
     const fromUnit = document.getElementById('fromUnit');
     const resultsBody = document.querySelector('#results tbody');
 
+    // Function to format numbers for display
+    function formatNumber(num) {
+        if (num === 0) return '0';
+        // Use exponential notation for very small or very large numbers
+        if (Math.abs(num) < 1e-7 || Math.abs(num) >= 1e10) {
+            return num.toExponential(6).replace(/\.?0+e/, 'e');
+        }
+        // Use toPrecision for general formatting and remove trailing zeros/dots
+        let str = num.toPrecision(10);
+        str = str.replace(/\.?0+$/, ''); // Remove trailing zeros after decimal point
+        if (str.endsWith('.')) {
+            str = str.slice(0, -1); // Remove trailing dot if no digits follow
+        }
+        return str;
+    }
+
     units.forEach(unit => {
       const option = document.createElement('option');
       option.value = unit.factor;
@@ -244,22 +296,26 @@
       }
 
       const fromFactor = parseFloat(fromUnit.value);
-      const baseValue = inputValue * fromFactor;
+      const baseValue = inputValue * fromFactor; // Convert input value to base unit (mol/s)
 
-      resultsBody.innerHTML = '';
+      resultsBody.innerHTML = ''; // Clear previous results
 
       units.forEach(unit => {
-        const converted = baseValue / unit.factor;
+        const converted = baseValue / unit.factor; // Convert from base unit to target unit
         const row = document.createElement('tr');
         const unitCell = document.createElement('td');
         const valueCell = document.createElement('td');
         unitCell.textContent = unit.name;
-        valueCell.textContent = converted.toPrecision(10);
+        valueCell.textContent = formatNumber(converted); // Use the new formatNumber function
         row.appendChild(unitCell);
         row.appendChild(valueCell);
         resultsBody.appendChild(row);
       });
     }
+
+    // Set an initial value and update results on page load
+    valueInput.value = 1;
+    updateResults();
 
     valueInput.addEventListener('input', updateResults);
     fromUnit.addEventListener('change', updateResults);
@@ -275,4 +331,4 @@
   </script>
 
 </body>
-</html>
+</html> 
