@@ -7,10 +7,21 @@
   <meta name="description" content="Free online converter to instantly convert between millimeters and centimeters. Accurate and easy to use." />
   <meta name="keywords" content="mm to cm, millimeters to centimeters, length converter, unit converter" />
   <meta name="author" content="Universal Unit Converter" />
-  <meta name="google-adsense-account" content="ca-pub-8299501777049336"> 
+  <link rel="icon" href="/favicon.ico" />
+  
+  <meta name="google-adsense-account" content="ca-pub-8299501777049336">
+  
+  <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/c8cd8b35b26a8.js" data-cmp-host="d.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59J56W3M');</script>
+  
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
        crossorigin="anonymous"></script> 
-  <link rel="icon" href="/favicon.ico" />
+  
   <style>
     body {
       margin: 0;
@@ -164,16 +175,11 @@
         text-align: center;
     }
   </style>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16TTL368B1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-16TTL368B1');
-  </script>
 </head>
 <body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59J56W3M"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
   <header>
     Universal Unit Converter
   </header>
@@ -211,7 +217,7 @@
 
         <div class="adsense-unit">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
-                 crossorigin="anonymous"></script>
+                   crossorigin="anonymous"></script>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-8299501777049336"
@@ -259,7 +265,7 @@
 
       <div class="adsense-unit">
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
-               crossorigin="anonymous"></script>
+                 crossorigin="anonymous"></script>
           <ins class="adsbygoogle"
                style="display:block"
                data-ad-client="ca-pub-8299501777049336"
@@ -357,7 +363,7 @@
 
   <div class="adsense-unit">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
-           crossorigin="anonymous"></script>
+             crossorigin="anonymous"></script>
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-8299501777049336"
@@ -427,7 +433,7 @@
 
   <script>
     const valueInput = document.getElementById('value');
-    const centimetersResult = document.getElementById('centimetersResult'); // Changed ID
+    const centimetersResult = document.getElementById('centimetersResult');
 
     function formatNumber(num) {
       if (num === 0) return '0';
@@ -435,34 +441,34 @@
         return num.toExponential(6).replace(/\.?0+e/, 'e');
       }
       if (Math.abs(num) >= 1e10) {
-         return num.toExponential(6).replace(/\.?0+e/, 'e');
+           return num.toExponential(6).replace(/\.?0+e/, 'e');
       }
       let str = num.toPrecision(10);
       str = str.replace(/\.?0+$/, '');
       if (str.includes('.') && str.endsWith('0')) {
-          str = str.replace(/0+$/, '');
+           str = str.replace(/0+$/, '');
       }
       if (str.endsWith('.')) {
-          str = str.slice(0, -1);
+           str = str.slice(0, -1);
       }
       return str;
     }
 
-    function convertMmToCm() { // Changed function name
-      const mmValue = parseFloat(valueInput.value); // Changed variable name
+    function convertMmToCm() {
+      const mmValue = parseFloat(valueInput.value);
       if (isNaN(mmValue)) {
         centimetersResult.textContent = '';
         return;
       }
       // 1 cm = 10 mm, so mm to cm is divide by 10
-      const centimeters = mmValue / 10; // Changed conversion logic
-      centimetersResult.textContent = formatNumber(centimeters); // Updated result ID
+      const centimeters = mmValue / 10;
+      centimetersResult.textContent = formatNumber(centimeters);
     }
 
-    valueInput.addEventListener('input', convertMmToCm); // Updated event listener
+    valueInput.addEventListener('input', convertMmToCm);
 
     valueInput.value = 1;
-    convertMmToCm(); // Initial conversion
+    convertMmToCm();
 
     function toggleCategory(event, id) {
       const el = document.getElementById(id);
@@ -477,7 +483,7 @@
     }
 
     function switchConverter() {
-        window.location.href = '/cm-to-mm.html'; // Updated switch link
+        window.location.href = '/cm-to-mm.html';
     }
   </script>
 </body>
