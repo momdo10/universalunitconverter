@@ -11,7 +11,7 @@
 
     <meta name="google-adsense-account" content="ca-pub-8299501777049336">
 
-    <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/c8cd8b35b26a8.js" data-cmp-host="d.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+    <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/c8cd8b35b26a8.js" data-cmp-host="d.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
 
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -22,10 +22,16 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299501777049336"
         crossorigin="anonymous"></script>
     
-    <script src="https://cdn.jsdelivr.net/npm/decimal.js@10.3.1/decimal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js"></script>
+    <script>
+      if (typeof Decimal === "undefined") {
+        document.write('<script src="./decimal.min.js"><\/script>');
+      }
+    </script>
 
     <style>
         :root {
+            /* Light mode colors */
             --bg-color: #f4f4f4;
             --text-color: #333;
             --primary-color: #007BFF;
@@ -34,9 +40,9 @@
             --card-bg: #fff;
             --border-color: #ccc;
             --input-bg: white;
-            --result-bg: #e9f2ff;
+            --result-bg: #e9f2ff; /* Still used for "To" input box */
             --result-text: #333;
-            --summary-text-rest: #333;
+            --summary-text-rest: #333; /* Color for the main part of the summary text */
             --table-header-bg: #e9f2ff;
             --table-row-even-bg: #f9f9f9;
             --table-row-hover-bg: #e0f0ff;
@@ -50,9 +56,10 @@
         }
 
         body.dark-mode {
+            /* Dark mode colors */
             --bg-color: #1a1a1a;
             --text-color: #e0e0e0;
-            --primary-color: #6a9de9;
+            --primary-color: #6a9de9; /* A slightly lighter blue for contrast */
             --header-bg: #333;
             --header-text: #e0e0e0;
             --card-bg: #2a2a2a;
@@ -120,8 +127,9 @@
             margin-bottom: 5px;
             color: var(--text-color);
         }
-
-        .value-input, .result-display-box, select {
+        
+        /* Input boxes for value and display */
+        .value-input, .result-display-box {
             border: 1px solid var(--border-color);
             border-radius: 4px;
             padding: 10px;
@@ -134,7 +142,7 @@
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
-        .value-input:focus, select:focus {
+        .value-input:focus {
             border-color: var(--primary-color);
             outline: none;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
@@ -143,23 +151,78 @@
             background-color: var(--result-bg);
             color: var(--result-text);
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            min-height: 40px;
-            pointer-events: none;
+            display: flex; /* To vertically center text */
+            align-items: center; /* To vertically center text */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Unit list - Always visible (no longer "hidden by default, shown by JS") */
+        .unit-list-box {
+            border: 1px solid var(--border-color);
+            max-height: 450px; 
+            overflow-y: auto; 
+            background-color: var(--input-bg);
+            z-index: 1; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 4px; 
+            padding: 5px 0;
+            margin-top: 10px; 
+            margin-bottom: 20px; 
+            box-sizing: border-box;
+            transition: background-color 0.3s, border-color 0.3s;
+            display: block; 
+            width: 100%; 
+        }
+        /* Custom scrollbar for WebKit browsers */
+        .unit-list-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .unit-list-box::-webkit-scrollbar-track {
+            background: var(--table-row-even-bg);
+            border-radius: 4px;
+        }
+        .unit-list-box::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+        .unit-list-box::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+        /* Custom scrollbar for Firefox */
+        .unit-list-box {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--table-row-even-bg);
+        }
+
+        .unit-list-box .unit-option {
+            padding: 10px 15px; 
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .unit-list-box .unit-option.selected,
+        .unit-list-box .unit-option:hover {
+            background-color: var(--table-row-hover-bg); 
+            color: var(--primary-color);
+            font-weight: bold; 
         }
 
         .input-group {
             display: flex;
-            gap: 15px;
+            gap: 30px; 
             margin-bottom: 20px;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Allows wrapping if screen is too small for both */
             justify-content: center;
         }
         .input-group > div {
-            flex: 1 1 200px;
-            min-width: 150px;
+            /* Ensures side-by-side layout, allowing wrap on small screens */
+            flex: 1 1 200px; /* Adjusted flex-basis to allow shrinking to 200px before wrapping */
+            min-width: 150px; /* Minimum width for each input-pair */
         }
+        
 
         table {
             width: 100%;
@@ -188,6 +251,7 @@
             background-color: var(--table-row-hover-bg);
         }
 
+        /* Main Flex Container for 3 Columns */
         .main-flex {
             display: flex;
             justify-content: space-between;
@@ -199,6 +263,7 @@
             padding: 0 15px;
         }
 
+        /* Column for the Unit Conversion Table (Left) */
         .unit-table-column {
             flex: 0 0 350px;
             background: var(--card-bg);
@@ -209,6 +274,7 @@
             min-height: 400px;
             transition: background-color 0.3s, color 0.3s;
         }
+        /* Main Converter Content (Center) */
         .converter-column {
             flex: 1 1 450px;
             background: var(--card-bg);
@@ -216,8 +282,10 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             box-sizing: border-box;
+            min-height: 800px; 
             transition: background-color 0.3s, color 0.3s;
         }
+        /* Sidebar (Right) */
         .sidebar {
             flex: 0 0 250px;
             background: var(--sidebar-bg);
@@ -278,6 +346,7 @@
             transform: rotate(-180deg);
         }
 
+        /* Styles for result summary */
         .result-summary {
             font-size: 1.2em; 
             font-weight: normal; 
@@ -297,7 +366,9 @@
             font-weight: normal; 
         }
 
-        #volume-info {
+
+        /* Info section styles */
+        #volume-info { 
             max-width: 900px;
             margin: 40px auto;
             padding: 20px;
@@ -320,6 +391,7 @@
             margin-top: 30px;
         }
 
+        /* Responsive adjustments for smaller screens */
         @media (max-width: 992px) {
             .unit-table-column, .converter-column, .sidebar {
                 flex-basis: calc(50% - 15px);
@@ -328,28 +400,32 @@
             .sidebar {
                 flex-basis: 100%;
             }
-        }
-
-        @media (max-width: 768px) {
-            .unit-table-column, .converter-column, .sidebar {
-                flex-basis: 100%;
+            @media (max-width: 768px) {
+                .unit-table-column, .converter-column, .sidebar {
+                    flex-basis: 100%;
+                }
             }
         }
-
+        /* No specific flex-direction: column for input-group on small screens,
+           allowing them to remain side-by-side and wrap if necessary. */
         @media (max-width: 480px) {
             .input-group {
-                flex-direction: column;
-                gap: 5px;
+                /* Removed flex-direction: column; to keep them side-by-side */
+                gap: 5px; /* Adjust gap for smaller screens */
+                flex-wrap: wrap; /* Explicitly ensure wrapping if they can't fit side-by-side */
             }
             .input-group > div {
-                min-width: unset;
+                /* Allow shrinking to minimum, but still try to stay side-by-side */
+                flex: 1 1 150px; /* Allows flexibility to shrink, but prefers 150px min-width */
             }
-            select {
+            /* Adjust unit list width for small screens */
+            .unit-list-box {
                 width: 100%;
             }
         }
     </style>
-</head>
+
+    </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59J56W3M"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -359,8 +435,7 @@
         <button id="darkModeToggle" class="dark-mode-toggle">Dark Mode</button>
     </header>
 
-    <main class="main-flex">
-        <div class="unit-table-column">
+    <main class="main-flex"> <div class="unit-table-column">
             <h2>Complete Volume Unit List</h2>
             <table id="results">
                 <thead>
@@ -378,24 +453,30 @@
             <div id="conversionResultSummary" class="result-summary">
                 <span class="result-label">Result:</span> <span class="result-value">1 cubic meter = 1000000 cubic centimeter</span>
             </div>
+
             <div class="input-group">
-                <div>
+                <div class="input-pair">
                     <label for="fromValueInput">From:</label>
                     <input 
                         type="text" 
                         id="fromValueInput" 
                         class="value-input" 
-                        placeholder="1"
+                        placeholder="1" 
+                        tabindex="0"
                     >
-                    <select id="fromUnitSelect"></select>
+                    <div id="fromUnitList" class="unit-list-box" role="listbox"></div>
                 </div>
-                <div>
-                    <label for="toUnitSelect">To:</label>
-                    <select id="toUnitSelect"></select>
-                    <div id="toResultDisplay" class="result-display-box"></div>
+                <div class="input-pair">
+                    <label>To:</label> <div 
+                        id="toResultDisplay" 
+                        class="result-display-box" 
+                        tabindex="0"
+                    ></div>
+                    <div id="toUnitList" class="unit-list-box" role="listbox"></div>
                 </div>
             </div>
-        </div>
+
+            </div>
 
         <aside class="sidebar">
             <div class="all-converters">
@@ -419,56 +500,64 @@
                 </ul>
             </div>
         </aside>
-    </main>
-    <section id="volume-info">
-        <h2>Understanding Volume and Its Units</h2>
-        <p>
-            Volume is a measure of the three-dimensional space occupied by a substance or enclosed by a boundary. It is a fundamental property in physics, chemistry, and engineering, essential for quantifying fluid capacities, object sizes, and material amounts. The standard international (SI) unit for volume is the cubic meter (m³).
-        </p>
-        <p>
-            Throughout history, various units have been developed to quantify volume, often based on practical needs such as trade, storage, or cooking. Below is an explanation of many common and specialized volume units.
-        </p>
-        <h3>Common Metric Units</h3>
-        <ul>
-            <li><strong>Cubic Meter (m³):</strong> The fundamental SI derived unit of volume. It represents the volume of a cube with sides one meter in length.</li>
-            <li><strong>Liter (L):</strong> A commonly used metric unit for fluid volume, equal to one cubic decimeter (dm³) or 0.001 cubic meters.</li>
-            <li><strong>Milliliter (mL):</strong> One thousandth of a liter, or one cubic centimeter (cm³). Widely used in medicine and cooking.</li>
-            <li><strong>Cubic Centimeter (cm³):</strong> Equal to one milliliter. Often used in engineering and for measuring the volume of small solids.</li>
-            <li><strong>Kiloliter (kL):</strong> Equals 1,000 liters or one cubic meter. Used for large volumes of liquids.</li>
-        </ul>
-        <h3>Imperial and US Customary Units</h3>
-        <ul>
-            <li><strong>Gallon (US liquid):</strong> The most common unit for liquids in the US, approximately 3.785 liters.</li>
-            <li><strong>Quart (US liquid):</strong> One-fourth of a US gallon, approximately 0.946 liters.</li>
-            <li><strong>Pint (US liquid):</strong> One-half of a US pint, approximately 0.473 liters.</li>
-            <li><strong>Cup (US):</strong> Half of a US pint, approximately 0.236 liters.</li>
-            <li><strong>Fluid Ounce (US fl oz):</strong> One-sixteenth of a US pint, approximately 29.57 milliliters.</li>
-            <li><strong>Tablespoon (US tbsp):</strong> Approximately 14.79 milliliters.</li>
-            <li><strong>Teaspoon (US tsp):</strong> One-third of a US tablespoon, approximately 4.93 milliliters.</li>
-            <li><strong>Cubic Foot (ft³):</strong> A common unit for larger volumes, particularly in gas and construction, equal to 28.317 liters.</li>
-            <li><strong>Cubic Inch (in³):</strong> One cubic inch is equal to 16.387 cubic centimeters.</li>
-            <li><strong>Cubic Yard (yd³):</strong> Used for large volumes like concrete or excavation, equal to 0.764554857984 cubic meters.</li>
-            <li><strong>Barrel (oil bbl):</strong> A standard unit in the oil industry, equal to 42 US gallons or approximately 159 liters.</li>
-            <li><strong>Acre-foot (ac ft):</strong> A large volume unit used in water management, equal to the volume of water covering one acre to a depth of one foot.</li>
-        </ul>
-        <h3>Other and Specialized Units</h3>
-        <ul>
-            <li><strong>Earth's Volume:</strong> The approximate total volume of the Earth, a vast unit used in astrophysics and planetary science (approx 1.08321 x 10^21 m³).</li>
-            <li><strong>Dram (US fl dr):</strong> A historical apothecary unit, 1/8 of a US fluid ounce.</li>
-            <li><strong>Cord:</strong> A unit of volume for firewood, equal to 128 cubic feet.</li>
-            <li><strong>Stere:</strong> A metric unit of volume equal to one cubic meter, used for measuring firewood or timber.</li>
-            <li><strong>Minim (US):</strong> The smallest unit of fluid measure in the apothecaries' system, 1/60 of a fluid dram.</li>
-            <li><strong>Board Foot (bf):</strong> A unit of volume for timber, equal to 1 inch x 12 inches x 12 inches.</li>
-        </ul>
-    </section>
+    </main> <section id="volume-info"> <h2>Understanding Volume and Its Units</h2>
+    <p>
+        Volume is a measure of the three-dimensional space occupied by a substance or enclosed by a boundary. It is a fundamental property in physics, chemistry, and engineering, essential for quantifying fluid capacities, object sizes, and material amounts. The standard international (SI) unit for volume is the cubic meter (m³).
+    </p>
+    <p>
+        Throughout history, various units have been developed to quantify volume, often based on practical needs such as trade, storage, or cooking. Below is an explanation of many common and specialized volume units.
+    </p>
+
+    <h3>Common Metric Units</h3>
+    <ul>
+        <li><strong>Cubic Meter (m³):</strong> The fundamental SI derived unit of volume. It represents the volume of a cube with sides one meter in length.</li>
+        <li><strong>Cubic Kilometer (km³):</strong> One billion (10⁹) cubic meters. Used for very large volumes, such as reservoirs or geological formations.</li>
+        <li><strong>Cubic Decimeter (dm³):</strong> One thousandth (10⁻³) of a cubic meter. Equal to one liter.</li>
+        <li><strong>Cubic Centimeter (cm³):</strong> One millionth (10⁻⁶) of a cubic meter. Equal to one milliliter. Often used in medicine and for measuring small volumes.</li>
+        <li><strong>Cubic Millimeter (mm³):</strong> One billionth (10⁻⁹) of a cubic meter. Used for extremely small volumes.</li>
+        <li><strong>Liter (L):</strong> A commonly used metric unit for fluid volume, equal to one cubic decimeter (dm³) or 0.001 cubic meters.</li>
+        <li><strong>Milliliter (mL):</strong> One thousandth of a liter, or one cubic centimeter (cm³). Widely used in medicine and cooking.</li>
+        <li><strong>Kiloliter (kL):</strong> Equals 1,000 liters or one cubic meter. Used for large volumes of liquids.</li>
+    </ul>
+
+    <h3>Imperial and US Customary Units</h3>
+    <ul>
+        <li><strong>Gallon (US liquid):</strong> The most common unit for liquids in the US, approximately 3.785 liters.</li>
+        <li><strong>Quart (US liquid):</strong> One-fourth of a US gallon, approximately 0.946 liters.</li>
+        <li><strong>Pint (US liquid):</strong> One-half of a US pint, approximately 0.473 liters.</li>
+        <li><strong>Cup (US):</strong> Half of a US pint, approximately 0.236 liters.</li>
+        <li><strong>Fluid Ounce (US fl oz):</strong> One-sixteenth of a US pint, approximately 29.57 milliliters.</li>
+        <li><strong>Tablespoon (US tbsp):</strong> Approximately 14.79 milliliters.</li>
+        <li><strong>Teaspoon (US tsp):</strong> One-third of a US tablespoon, approximately 4.93 milliliters.</li>
+        <li><strong>Cubic Foot (ft³):</strong> A common unit for larger volumes, particularly in gas and construction, equal to 28.317 liters.</li>
+        <li><strong>Cubic Inch (in³):</strong> One cubic inch is equal to 16.387 cubic centimeters.</li>
+        <li><strong>Cubic Yard (yd³):</strong> Used for large volumes like concrete or excavation, equal to 0.764554857984 cubic meters.</li>
+        <li><strong>Barrel (oil bbl):</strong> A standard unit in the oil industry, equal to 42 US gallons or approximately 159 liters.</li>
+        <li><strong>Acre-foot (ac ft):</strong> A large volume unit used in water management, equal to the volume of water covering one acre to a depth of one foot.</li>
+    </ul>
+
+    <h3>Other and Specialized Units</h3>
+    <ul>
+        <li><strong>Earth's Volume:</strong> The approximate total volume of the Earth, a vast unit used in astrophysics and planetary science (approx 1.08321 x 10^21 m³).</li>
+        <li><strong>Dram (US fl dr):</strong> A historical apothecary unit, 1/8 of a US fluid ounce.</li>
+        <li><strong>Cord:</strong> A unit of volume for firewood, equal to 128 cubic feet.</li>
+        <li><strong>Stere:</strong> A metric unit of volume equal to one cubic meter, used for measuring firewood or timber.</li>
+        <li><strong>Minim (US):</strong> The smallest unit of fluid measure in the apothecaries' system, 1/60 of a fluid dram.</li>
+        <li><strong>Board Foot (bf):
+            </strong> A unit of volume for timber, equal to 1 inch x 12 inches x 12 inches.</li>
+    </ul>
+</section>
+
     <footer style="background-color:var(--header-bg); color:var(--header-text); padding:20px; text-align:center; margin-top:40px; transition: background-color 0.3s, color 0.3s;">
         <a href="/" style="color:var(--header-text); margin: 0 15px; text-decoration:none;">Home</a>
         <a href="/sitemap.html" style="color:var(--header-text); margin: 0 15px; text-decoration:none;">Sitemap</a>
         <a href="/about.html" style="color:var(--header-text); margin: 0 15px; text-decoration:none;">Contact</a>
         <a href="/privacy-policy.html" style="color:var(--header-text); margin: 0 15px; text-decoration:none;">Privacy Policy</a>
     </footer>
+
     <script>
-        Decimal.set({ precision: 50 });
+        // Set Decimal.js to use high precision by default
+        Decimal.set({ precision: 50 }); // Set a high precision for calculations
 
         const units = [
             { name: "cubic meter [m³]", display_name: "cubic meter", factor: new Decimal(1), aliases: ["cubic meter", "m3", "meter cubed", "meters cubed"] },
@@ -482,7 +571,7 @@
             { name: "hectoliter [hL]", display_name: "hectoliter", factor: new Decimal(0.1), aliases: ["hectoliter", "hl", "hectolitre", "hectoliters"] },
             { name: "decaliter [daL]", display_name: "decaliter", factor: new Decimal(0.01), aliases: ["decaliter", "dal", "decalitre", "decaliters"] },
             { name: "deciliter [dL]", display_name: "deciliter", factor: new Decimal(0.0001), aliases: ["deciliter", "dl", "decilitre", "deciliters"] },
-            { name: "centiliter [cL]", display_name: "centiliter", factor: new Decimal(0.00001), aliases: ["centiliter", "cl", "centilitre", "centiliters"] },
+            { name: "centiliter [cL]", display: "centiliter", factor: new Decimal(0.00001), aliases: ["centiliter", "cl", "centilitre", "centiliters"] },
             { name: "microliter [µL]", display_name: "microliter", factor: new Decimal('1e-9'), aliases: ["microliter", "µl", "microlitre", "microliters"] },
             { name: "nanoliter [nL]", display_name: "nanoliter", factor: new Decimal('1e-12'), aliases: ["nanoliter", "nl", "nanolitre", "nanoliters"] },
             { name: "picoliter [pL]", display_name: "picoliter", factor: new Decimal('1e-15'), aliases: ["picoliter", "pl", "picolitre", "picoliters"] },
@@ -516,111 +605,203 @@
         ];
 
         const fromValueInput = document.getElementById('fromValueInput');
-        const fromUnitSelect = document.getElementById('fromUnitSelect');
-        const toUnitSelect = document.getElementById('toUnitSelect');
+        const fromUnitListDiv = document.getElementById('fromUnitList');
         const toResultDisplayDiv = document.getElementById('toResultDisplay');
+        const toUnitListDiv = document.getElementById('toUnitList');
         const resultsBody = document.querySelector('#results tbody');
         const conversionResultSummary = document.getElementById('conversionResultSummary');
         const darkModeToggle = document.getElementById('darkModeToggle');
 
-        let currentFromValue = new Decimal(1);
-        let currentFromUnitIndex = 0;
-        let currentToUnitIndex = 3;
+        let currentFromValue = new Decimal(1); 
+        let currentFromUnitIndex = 0; 
+        let currentToUnitIndex = 3; 
+
+        // --- Helper Functions ---
 
         function formatNumber(numDecimal) {
             if (numDecimal.isZero()) return '0';
-            let str = numDecimal.toPrecision(10);
+
+            // Use Decimal.js's default toString() method, which intelligently
+            // chooses between fixed and exponential notation based on magnitude.
+            let str = numDecimal.toString(); 
+
+            // Remove trailing zeros after a decimal point, and the decimal point itself
+            // if the number is an integer (e.g., "1.00" becomes "1", "12.30" becomes "12.3").
             str = str.replace(/(\.\d*?[1-9])0+$/, '$1').replace(/\.0*$/, '');
+
             return str;
         }
+
         function getDisplayName(unitIndex) {
             return units[unitIndex].display_name;
         }
 
-        function populateUnitSelect(selectElem, selectedUnitIndex) {
-            selectElem.innerHTML = '';
+        // --- UI Population and Updates ---
+
+        function populateUnitList(unitListDiv, selectedUnitIndex) {
+            unitListDiv.innerHTML = ''; 
             units.forEach((unit, i) => {
-                const opt = document.createElement('option');
-                opt.value = i;
-                opt.textContent = unit.name;
-                if (i === selectedUnitIndex) opt.selected = true;
-                selectElem.appendChild(opt);
+                const option = document.createElement('div');
+                option.classList.add('unit-option');
+                option.dataset.unitIndex = i; 
+                option.textContent = unit.name; 
+                option.setAttribute('role', 'option');
+                if (i === selectedUnitIndex) {
+                    option.classList.add('selected');
+                    option.setAttribute('aria-selected', 'true');
+                } else {
+                    option.setAttribute('aria-selected', 'false');
+                }
+                unitListDiv.appendChild(option);
             });
+
+            const selectedElement = unitListDiv.querySelector('.unit-option.selected');
+            if (selectedElement) {
+                selectedElement.scrollIntoView({ block: 'nearest', behavior: 'instant' }); 
+            }
         }
 
         function updateResultDisplay() {
-            if (!(currentFromValue instanceof Decimal) || currentFromValue.isNaN() || units[currentFromUnitIndex] === undefined || units[currentToUnitIndex] === undefined) {
-                conversionResultSummary.innerHTML = `<span class="result-label">Result:</span> <span class="result-value">Invalid input or units selected.</span>`;
-                toResultDisplayDiv.textContent = 'Invalid';
-                resultsBody.innerHTML = '';
-                return;
-            }
+            const fromUnit = units[currentFromUnitIndex];
+            const toUnit = units[currentToUnitIndex];
 
-            const fromFactor = units[currentFromUnitIndex].factor;
-            const toFactor = units[currentToUnitIndex].factor;
+            const valueInCubicMeters = currentFromValue.times(fromUnit.factor);
+            const convertedValue = valueInCubicMeters.dividedBy(toUnit.factor);
 
-            const valInMeters = currentFromValue.times(fromFactor);
-            const convertedVal = valInMeters.dividedBy(toFactor);
+            toResultDisplayDiv.textContent = formatNumber(convertedValue);
 
-            toResultDisplayDiv.textContent = formatNumber(convertedVal);
-
-            const fromUnitDisplayName = getDisplayName(currentFromUnitIndex);
-            const toUnitDisplayName = getDisplayName(currentToUnitIndex);
             conversionResultSummary.innerHTML = `
                 <span class="result-label">Result:</span> 
-                <span class="result-value">${formatNumber(currentFromValue)} ${fromUnitDisplayName} = ${formatNumber(convertedVal)} ${toUnitDisplayName}</span>
+                <span class="result-value">${formatNumber(currentFromValue)} ${fromUnit.display_name} = ${formatNumber(convertedValue)} ${toUnit.display_name}</span>
             `;
 
-            let html = '';
-            units.forEach(unit => {
-                const tableConvertedVal = valInMeters.dividedBy(unit.factor);
-                html += `<tr><td>${unit.name}</td><td>${formatNumber(tableConvertedVal)}</td></tr>`;
-            });
-            resultsBody.innerHTML = html;
+            populateConversionTable(currentFromUnitIndex);
         }
 
-        fromValueInput.addEventListener('input', function() {
-            try {
-                const parsedValue = new Decimal(this.value);
-                currentFromValue = parsedValue.isNaN() ? new Decimal(1) : parsedValue;
-            } catch (e) {
-                currentFromValue = new Decimal(1);
+        function populateConversionTable(baseUnitIndex) {
+            resultsBody.innerHTML = ''; 
+            const baseUnit = units[baseUnitIndex];
+
+            units.forEach(unit => {
+                const row = resultsBody.insertCell(0);
+                const cellValue = row.insertCell(1);
+
+                cellUnit.textContent = unit.name;
+
+                const valueInCubicMeters = new Decimal(1).times(baseUnit.factor);
+                const convertedValue = valueInCubicMeters.dividedBy(unit.factor);
+                
+                cellValue.textContent = formatNumber(convertedValue);
+            });
+        }
+
+
+        // --- Event Listeners ---
+
+        fromValueInput.addEventListener('input', (event) => {
+            let value = event.target.value.trim();
+            if (value === '') {
+                currentFromValue = new Decimal(0); 
+            } else {
+                try {
+                    currentFromValue = new Decimal(value);
+                } catch (e) {
+                    currentFromValue = new Decimal(0); 
+                }
             }
             updateResultDisplay();
         });
 
-        fromUnitSelect.addEventListener('change', function() {
-            currentFromUnitIndex = parseInt(this.value, 10);
-            updateResultDisplay();
+        fromUnitListDiv.addEventListener('click', (event) => {
+            const selectedOption = event.target.closest('.unit-option');
+            if (selectedOption) {
+                const newIndex = parseInt(selectedOption.dataset.unitIndex);
+                if (newIndex !== currentFromUnitIndex) {
+                    currentFromUnitIndex = newIndex;
+                    fromValueInput.placeholder = units[currentFromUnitIndex].display_name; 
+                    populateUnitList(fromUnitListDiv, currentFromUnitIndex); 
+                    updateResultDisplay();
+                }
+            }
         });
 
-        toUnitSelect.addEventListener('change', function() {
-            currentToUnitIndex = parseInt(this.value, 10);
-            updateResultDisplay();
+        toUnitListDiv.addEventListener('click', (event) => {
+            const selectedOption = event.target.closest('.unit-option');
+            if (selectedOption) {
+                const newIndex = parseInt(selectedOption.dataset.unitIndex);
+                if (newIndex !== currentToUnitIndex) {
+                    currentToUnitIndex = newIndex;
+                    populateUnitList(toUnitListDiv, currentToUnitIndex); 
+                    updateResultDisplay();
+                }
+            }
         });
+
+        function handleUnitListKeydown(event, inputElement, unitListDiv, isFromUnit) {
+            const activeElement = document.activeElement;
+            const options = Array.from(unitListDiv.querySelectorAll('.unit-option'));
+            let currentActiveIndex = -1;
+
+            if (activeElement && options.includes(activeElement)) {
+                currentActiveIndex = options.indexOf(activeElement);
+            }
+
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                const nextIndex = (currentActiveIndex + 1) % options.length;
+                options[nextIndex].focus();
+                options[nextIndex].scrollIntoView({ block: 'nearest' });
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                const prevIndex = (currentActiveIndex - 1 + options.length) % options.length;
+                options[prevIndex].focus();
+                options[prevIndex].scrollIntoView({ block: 'nearest' });
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (currentActiveIndex !== -1) {
+                    const selectedOption = options[currentActiveIndex];
+                    const newIndex = parseInt(selectedOption.dataset.unitIndex);
+                    if (isFromUnit) {
+                        if (newIndex !== currentFromUnitIndex) {
+                            currentFromUnitIndex = newIndex;
+                            fromValueInput.placeholder = units[currentFromUnitIndex].display_name;
+                        }
+                    } else {
+                        if (newIndex !== currentToUnitIndex) {
+                            currentToUnitIndex = newIndex;
+                        }
+                    }
+                    populateUnitList(unitListDiv, isFromUnit ? currentFromUnitIndex : currentToUnitIndex);
+                    updateResultDisplay();
+                    inputElement.focus(); 
+                }
+            }
+        }
+        
+        fromUnitListDiv.addEventListener('keydown', (event) => handleUnitListKeydown(event, fromValueInput, fromUnitListDiv, true));
+        toUnitListDiv.addEventListener('keydown', (event) => handleUnitListKeydown(event, toResultDisplayDiv, toUnitListDiv, false));
 
         darkModeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                darkModeToggle.textContent = 'Light Mode';
-            } else {
-                localStorage.setItem('theme', 'light');
-                darkModeToggle.textContent = 'Dark Mode';
-            }
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
         });
 
         function initializeConverter() {
-            if (localStorage.getItem('theme') === 'dark') {
+            const savedDarkMode = localStorage.getItem('darkMode');
+            if (savedDarkMode === 'true') {
                 document.body.classList.add('dark-mode');
                 darkModeToggle.textContent = 'Light Mode';
             } else {
                 document.body.classList.remove('dark-mode');
                 darkModeToggle.textContent = 'Dark Mode';
             }
-            fromValueInput.value = currentFromValue.toString();
-            populateUnitSelect(fromUnitSelect, currentFromUnitIndex);
-            populateUnitSelect(toUnitSelect, currentToUnitIndex);
+
+            fromValueInput.value = currentFromValue.toString(); 
+            fromValueInput.placeholder = units[currentFromUnitIndex].display_name; 
+            populateUnitList(fromUnitListDiv, currentFromUnitIndex);
+            populateUnitList(toUnitListDiv, currentToUnitIndex);
             updateResultDisplay();
         }
 
@@ -635,7 +816,7 @@
                 document.querySelectorAll('.collapsible-content').forEach(content => {
                     if (content.id !== id && content.style.display === 'block') {
                         content.style.display = 'none';
-                        const correspondingBtn = document.querySelector(`.collapsible-btn[onclick*="'${content.id}'"]`);
+                        const correspondingBtn = document.querySelector(`.collapsible-btn[onclick*=\"'${content.id}'\"]`);
                         if(correspondingBtn) {
                             correspondingBtn.classList.remove('active');
                         }
